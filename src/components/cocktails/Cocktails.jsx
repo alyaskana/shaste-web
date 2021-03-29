@@ -10,7 +10,6 @@ const Cocktails = () => {
   const [cocktails, setCocktails] = useState([])
   useEffect(() => {
     axios.get(`http://localhost:3000/api/cocktails`).then(response => {
-      console.log(response);
       setCocktails(response.data.cocktails)
     })
   }, []);

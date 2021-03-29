@@ -1,0 +1,61 @@
+.author {
+  text-align: center;
+
+  &_login {
+    margin-left: 8px;
+    color: gray;
+    cursor: pointer;
+  }
+}
+
+.cocktail_title {
+  text-align: center;
+  font-weight: bold;
+  font-size: 48px;
+  margin: 32px auto;
+}
+
+.tags {
+  max-width: 750px;
+  margin: 0 auto;
+  text-align: center;
+
+  .tag {
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 3px;
+    padding: 3px 7px;
+    margin: 0 16px 8px 0;
+    box-sizing: border-box;
+    display: inline-block;
+  }
+}
+
+.actions {
+  margin: 32px 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .action {
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+    font-weight: 500;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .icon_wrapper {
+      display: inline-block;
+      margin: 0 8px 0 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.cocktail_content {
+  display: flex;
+  max-width: 1160px;
+  margin: 0 auto;
+}
