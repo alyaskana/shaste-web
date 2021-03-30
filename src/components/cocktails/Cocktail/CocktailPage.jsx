@@ -14,7 +14,7 @@ const cocktailIngredients = (ingredients) => {
   })
 }
 
-const Cocktail = (props) => {
+const CocktailPage = (props) => {
   const cocktailId = props.match.params.id
   const [cocktail, setCocktail] = useState(null)
   useEffect(() => {
@@ -89,4 +89,4 @@ const Cocktail = (props) => {
   )
 }
 
-export default Cocktail
+export default CocktailPage

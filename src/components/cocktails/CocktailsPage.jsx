@@ -6,7 +6,7 @@ const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => ingredient.name).join(', ')
 }
 
-const Cocktails = () => {
+const CocktailsPage = () => {
   const [cocktails, setCocktails] = useState([])
   useEffect(() => {
     axios.get(`http://localhost:3000/api/cocktails`).then(response => {
@@ -48,4 +48,4 @@ const Cocktails = () => {
   );
 }
 
-export default Cocktails
+export default CocktailsPage

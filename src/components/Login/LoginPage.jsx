@@ -10,7 +10,7 @@ async function loginUser(credentials) {
   }).then(data => ({ headers: data.headers, data: data }))
 }
 
-const Login = ({ setToken }) => {
+const LoginPage = ({ setToken }) => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -45,4 +45,4 @@ const Login = ({ setToken }) => {
   );
 };
 
-export default Login;
+export default LoginPage;
