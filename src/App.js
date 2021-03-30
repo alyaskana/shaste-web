@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import useToken from './components/App/useToken';
+import useUser from './components/App/useUser';
 import CocktailPage from './components/Cocktails/Cocktail/CocktailPage';
 import CocktailsPage from './components/Cocktails/CocktailsPage';
 import CollectionsPage from './components/Collections/CollectionsPage';
@@ -11,18 +11,18 @@ import LoginPage from './components/Login/LoginPage';
 import UserContext from './userContext'
 
 function App() {
-  const { token, setToken } = useToken();
+  const { user, setUser } = useUser();
 
-  // if (!token) {
-  //   return <Login setToken={setToken} />
+  // if (!user) {
+  //   return <Login setUser={setUser} />
   // }
   return (
-    <UserContext.Provider value={token}>
+    <UserContext.Provider value={user?.user}>
       <BrowserRouter>
         <Header />
         <Switch>
           <Route exact path='/login'>
-            {token ? <Redirect to="/cocktails" /> : <LoginPage setToken={setToken} />}
+            {user ? <Redirect to="/cocktails" /> : <LoginPage setUser={setUser} />}
           </Route>
           <Route exact path='/feed'>
             <FeedPage />

@@ -7,22 +7,22 @@ async function loginUser(credentials) {
     headers: {
       'Content-Type': 'application/json'
     },
-  }).then(data => ({ headers: data.headers, data: data }))
+  }).then(response => ({ token: response.headers.authorization, user: response.data }))
 }
 
-const LoginPage = ({ setToken }) => {
+const LoginPage = ({ setUser }) => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await loginUser({
+    const userData = await loginUser({
       user: {
         email: useremail,
         password
       }
     });
-    setToken(response.headers.authorization);
+    setUser(userData);
   }
 
   return (
@@ -31,11 +31,11 @@ const LoginPage = ({ setToken }) => {
       <form onSubmit={handleSubmit}>
         <label>
           <p>Email</p>
-          <input type="email" onChange={e => setUserEmail(e.target.value)} />
+          <input name='email' type="email" onChange={e => setUserEmail(e.target.value)} />
         </label>
         <label>
           <p>Password</p>
-          <input type="password" onChange={e => setPassword(e.target.value)} />
+          <input name='password' type="password" onChange={e => setPassword(e.target.value)} />
         </label>
         <div>
           <button type="submit">Submit</button>
