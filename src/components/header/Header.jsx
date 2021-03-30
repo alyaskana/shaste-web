@@ -25,8 +25,13 @@ const Header = (props) => {
             <img src={icon_find} alt="icon_find" className={s.icon} />
           </div>
         </div>
-        <div className={s.avatar_wrapper}>
-        </div>
+        {user ? (
+          <div className={s.avatar_wrapper}>
+            <img src={"//localhost:3000" + user.avatar.thumb.url} alt="" />
+          </div>
+        ) : (
+          <NavLink to='/login' activeClassName={s.active}>вход</NavLink>
+        )}
       </div>
     </div>
   )
