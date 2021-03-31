@@ -35,23 +35,32 @@
       align-items: center;
 
       &_input {
+        @keyframes showInput {
+          from {
+            width: 0px;
+          }
+        }
+
         height: 40px;
         width: 360px;
         border: 1px solid $black;
         outline: none;
         padding: 0 15px;
         font-size: 18px;
+        animation: showInput 0.2s;
       }
 
       .icon_wrapper {
         margin-left: 10px;
-        width: 25px;
+        width: 26px;
+        height: 26px;
         cursor: pointer;
 
         .icon {
           width: 100%;
         }
       }
+
     }
 
     .avatar_wrapper {
@@ -59,10 +68,84 @@
       width: 50px;
       height: 50px;
       margin-left: 40px;
+      position: relative;
+      cursor: pointer;
 
       img {
         width: 100%;
       }
+    }
+
+    .user_menu_wrapper {
+      padding-top: 14px;
+      position: absolute;
+      top: 100%;
+      right: 0px;
+      cursor: auto;
+    }
+
+    .user_menu {
+      padding: 20px;
+      background-color: white;
+      border: 1px solid $black;
+      width: 250px;
+
+      .header {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid $black;
+        padding-bottom: 15px;
+
+        .avatar_wrapper {
+          margin: 0;
+          cursor: auto;
+        }
+
+        .bio {
+          margin-left: 16px;
+
+          .name {
+            font-size: 18px;
+            font-weight: 500;
+          }
+
+          .login {
+            margin: 0;
+          }
+        }
+      }
+
+      .links {
+        padding: 15px 0;
+        border-bottom: 1px solid $black;
+
+        .link {
+          margin-bottom: 10px;
+          display: block;
+          text-decoration: none;
+          color: $black;
+          font-size: 18px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      .logout {
+        text-align: center;
+        font-size: 18px;
+        margin-top: 15px;
+        cursor: pointer;
+      }
+    }
+
+
+    .login {
+      margin-left: 40px;
+      text-decoration: none;
+      color: $black;
+      font-size: 18px;
     }
   }
 }

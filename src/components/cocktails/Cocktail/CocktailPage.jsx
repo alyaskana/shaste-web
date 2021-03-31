@@ -6,7 +6,7 @@ import save_icon from '../../../assets/images/icons/bookmark.png'
 import active_save_icon from '../../../assets/images/icons/bookmark_filled.png'
 import like_icon from '../../../assets/images/icons/heart.png'
 import active_like_icon from '../../../assets/images/icons/heart_filled.png'
-import A_action_icon from './A_action_icon'
+import ActionIcon from './A_action_icon'
 
 const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => {
@@ -46,15 +46,15 @@ const CocktailPage = (props) => {
         ))}
       </div>
       <div className={s.actions}>
-        <A_action_icon
+        <ActionIcon
           icon_src_default={taste_icon}
           icon_src_active={taste_icon}
           users_count={cocktail.tasted_users} />
-        <A_action_icon
+        <ActionIcon
           icon_src_default={like_icon}
           icon_src_active={active_like_icon}
           users_count={cocktail.liked_users} />
-        <A_action_icon
+        <ActionIcon
           icon_src_default={save_icon}
           icon_src_active={active_save_icon}
           users_count={cocktail.favorited_users} />
