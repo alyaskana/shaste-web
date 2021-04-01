@@ -1,14 +1,19 @@
+@import '/src/variables.scss';
+
 .card {
   max-width: 312px;
   border: 1px solid $black;
+  display: inline-block;
+  height: 100%;
 
   &_content {
     padding: 20px;
 
     .title {
-      font-family: 'AkzidenzGroteskPro-Medium';
+      font-family: 'Akzidenz Grotesk';
       font-weight: 500;
       font-size: 20px;
+      text-align: center;
     }
 
     .ingredients_block {

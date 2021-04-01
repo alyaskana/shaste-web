@@ -1,0 +1,13 @@
+.cocktails_list {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 50px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+
+  .cocktail_wrapper {
+    text-decoration: none;
+    color: inherit;
+  }
+}

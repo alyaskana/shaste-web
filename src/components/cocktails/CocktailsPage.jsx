@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import * as axios from "axios";
+import M_Recipe_Card from "../Molecules/M_Recipe_Card/M_Recipe_Card";
+import s from './CocktailsPage.module.scss'
 
 const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => ingredient.name).join(', ')
@@ -16,33 +18,18 @@ const CocktailsPage = () => {
   return (
     <>
       <h1>Cocktails</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Title</th>
-            <th>Ingredients</th>
-            <th>Image</th>
-            <th>Description</th>
-            <th>Directions</th>
-            <th colSpan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {cocktails.map(cocktail => (
-            <tr key={cocktail.id}>
-              <td>{cocktail.user.login}</td>
-              <td>{cocktail.title}</td>
-              <td>{cocktailIngredients(cocktail.ingredients)}</td>
-              <td>{cocktail.image.thumb.url ? <img src={"//localhost:3000" + cocktail.image.thumb.url} alt="cocktail" /> : ''}</td>
-              <td>{cocktail.description}</td>
-              <td dangerouslySetInnerHTML={{ __html: cocktail.directions }}></td>
-            </tr>
-          ))
-          }
-        </tbody>
-      </table>
+      <div className={s.cocktails_list}>
+        {cocktails.map(cocktail => (
+          <NavLink to={'/cocktails/' + cocktail.id} className={s.cocktail_wrapper}>
+            <M_Recipe_Card
+              key={cocktail.id}
+              src={"//localhost:3000" + cocktail.image.url}
+              title={cocktail.title}
+              ingredients={cocktail.ingredients} />
+          </NavLink>
+        ))
+        }
+      </div>
       <NavLink to='/cocktails/new'>Создать коктейль</NavLink>
     </>
   );
