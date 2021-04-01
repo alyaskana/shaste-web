@@ -1,0 +1,29 @@
+.card {
+  max-width: 312px;
+  border: 1px solid $black;
+
+  &_content {
+    padding: 20px;
+
+    .title {
+      font-family: 'AkzidenzGroteskPro-Medium';
+      font-weight: 500;
+      font-size: 20px;
+    }
+
+    .ingredients_block {
+      margin-top: 15px;
+      text-align: center;
+
+      .subtitle {
+        font-family: 'Baskerville';
+        font-size: 20px;
+        font-style: italic;
+      }
+
+      .ingredients_list {
+        margin-top: 5px;
+      }
+    }
+  }
+}

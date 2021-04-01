@@ -1,0 +1,9 @@
+.img_wrapper {
+  max-width: 312px;
+  max-height: 420px;
+  border: 1px solid $black;
+
+  .img {
+    width: 100%;
+  }
+}
