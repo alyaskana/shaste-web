@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom"
 import * as axios from "axios";
 import M_Recipe_Card from "../Molecules/M_Recipe_Card/M_Recipe_Card";
 import s from './CocktailsPage.module.scss'
+import Masonry from "react-masonry-css";
 
 const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => ingredient.name).join(', ')
@@ -19,16 +20,21 @@ const CocktailsPage = () => {
     <>
       <h1>Cocktails</h1>
       <div className={s.cocktails_list}>
-        {cocktails.map(cocktail => (
-          <NavLink to={'/cocktails/' + cocktail.id} className={s.cocktail_wrapper}>
-            <M_Recipe_Card
-              key={cocktail.id}
-              src={"//localhost:3000" + cocktail.image.url}
-              title={cocktail.title}
-              ingredients={cocktail.ingredients} />
-          </NavLink>
-        ))
-        }
+        <Masonry
+          breakpointCols={4}
+          className={s.my_masonry_grid}
+          columnClassName={s.my_masonry_grid_column}>
+          {cocktails.map(cocktail => (
+            <NavLink to={'/cocktails/' + cocktail.id} className={s.cocktail_wrapper}>
+              <M_Recipe_Card
+                key={cocktail.id}
+                src={"//localhost:3000" + cocktail.image.url}
+                title={cocktail.title}
+                ingredients={cocktail.ingredients} />
+            </NavLink>
+          ))
+          }
+        </Masonry>
       </div>
       <NavLink to='/cocktails/new'>Создать коктейль</NavLink>
     </>
