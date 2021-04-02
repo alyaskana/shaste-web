@@ -1,0 +1,28 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .ingredient_name {
+    font-family: 'Akzidenz Grotesk';
+    font-size: 28px;
+    line-height: 135%;
+  }
+
+  .ingredient_info {
+    display: flex;
+    align-items: center;
+
+    .amount {
+      font-family: 'Baskerville';
+      font-style: italic;
+      font-size: 20px;
+      margin-right: 12px;
+    }
+  }
+}

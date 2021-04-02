@@ -18,7 +18,6 @@ const CocktailsPage = () => {
   }, []);
   return (
     <>
-      <h1>Cocktails</h1>
       <div className={s.cocktails_list}>
         <Masonry
           breakpointCols={4}

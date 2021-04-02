@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react"
 import * as axios from "axios";
-import s from './Cocktail.module.scss'
-import taste_icon from '../../../assets/images/icons/tasted.png'
-import save_icon from '../../../assets/images/icons/bookmark.png'
-import active_save_icon from '../../../assets/images/icons/bookmark_filled.png'
-import like_icon from '../../../assets/images/icons/heart.png'
-import active_like_icon from '../../../assets/images/icons/heart_filled.png'
-import ActionIcon from './A_action_icon'
+import s from './CocktailPage.module.scss'
+import A_Card_Photo from "../../Atoms/A_Card_Photo/A_Card_Photo";
+import A_Title_Secondary from "./A_Title_Secondary";
+import M_Ingredient_Have from "./M_Ingredient_Have";
+import O_Recipe_Header from "./O_Recipe_Header";
+import M_Recipe_Step from "./M_Recipe_Step";
+import YoutubeEmbed from "../../App/YoutubeEmbed";
 
 const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => {
-    return <div>{ingredient.name}</div>
+    return <M_Ingredient_Have ingredient={ingredient} />
+  })
+}
+
+const cocktailDirections = (direction) => {
+  return direction.map((direction, index) => {
+    return <M_Recipe_Step step={index + 1} text={direction} />
   })
 }
 
@@ -29,61 +35,26 @@ const CocktailPage = (props) => {
 
   return (
     <div>
-      <div className={s.author}>
-        {cocktail.user.user_name}
-        <span className={s.author_login}>
-          @{cocktail.user.login}
-        </span>
-      </div>
-      <div className={s.cocktail_title}>
-        {cocktail.title}
-      </div>
-      <div className={s.tags}>
-        {Object.entries(cocktail.tags).map(([tag, count]) => (
-          <span className={s.tag}>
-            {tag} {count}
-          </span>
-        ))}
-      </div>
-      <div className={s.actions}>
-        <ActionIcon
-          icon_src_default={taste_icon}
-          icon_src_active={taste_icon}
-          users_count={cocktail.tasted_users} />
-        <ActionIcon
-          icon_src_default={like_icon}
-          icon_src_active={active_like_icon}
-          users_count={cocktail.liked_users} />
-        <ActionIcon
-          icon_src_default={save_icon}
-          icon_src_active={active_save_icon}
-          users_count={cocktail.favorited_users} />
-      </div>
+      <O_Recipe_Header cocktail={cocktail} />
       <div className={s.cocktail_content}>
-        <div className={s.cocktail_image}>
-          <img src={"//localhost:3000" + cocktail.image.url} alt="cocktail" />
-        </div>
-        <div className={s.cocktail_info}>
-          <div className={s.description}>
-            {cocktail.description}
-          </div>
+        <div className={s.receipe_info}>
           <div className={s.ingredients}>
-            <div className={s.title}>
-              Ингредиенты
-            </div>
+            <A_Title_Secondary title='Ингредиенты' />
             <div className={s.ingredients_list}>
               {cocktailIngredients(cocktail.ingredients)}
             </div>
           </div>
+          <div className={s.separator}></div>
+          <div className={s.cocktail_image}>
+            <A_Card_Photo src={"//localhost:3000" + cocktail.image.url} />
+          </div>
+          <div className={s.separator}></div>
           <div className={s.instructions}>
-            <div className={s.title}>
-              Приготовление
-            </div>
-            <div className={s.instructions_text}>
-              {cocktail.directions}
-            </div>
+            <A_Title_Secondary title='Приготовление' />
+            {cocktailDirections(cocktail.directions)}
           </div>
         </div>
+        <div className={s.video}><YoutubeEmbed embedId='dQw4w9WgXcQ' /></div>
       </div>
     </div>
   )

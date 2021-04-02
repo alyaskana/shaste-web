@@ -1,7 +1,8 @@
+import axios from 'axios';
 import React, { useState } from 'react';
-import s from './Cocktail.module.scss'
+import s from './A_Action_Icon.module.scss'
 
-const A_action_icon = ({ icon_src_default, icon_src_active, users_count, updateCount }) => {
+const A_Action_Icon = ({ icon_src_default, icon_src_hover, icon_src_active, users_count, updateCount }) => {
   const [isChecked, setIsChecked] = useState(false)
   const handleClick = () => {
     setIsChecked(!isChecked)
@@ -17,4 +18,4 @@ const A_action_icon = ({ icon_src_default, icon_src_active, users_count, updateC
   );
 };
 
-export default A_action_icon;
+export default A_Action_Icon;
