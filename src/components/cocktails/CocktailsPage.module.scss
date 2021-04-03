@@ -1,10 +1,20 @@
+@import '/src/variables.scss';
+
+.add_cocktail_btn {
+  font-family: 'Akzidenz Grotesk';
+  font-size: 24px;
+  border-bottom: 1px solid $secondary;
+  text-decoration: none;
+  color: $secondary;
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
 .cocktails_list {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 50px;
-  // display: flex;
-  // flex-wrap: wrap;
-  // gap: 30px;
+  margin-top: 50px;
 
   .cocktail_wrapper {
     text-decoration: none;

@@ -54,9 +54,9 @@ const CocktailPage = (props) => {
             {cocktailDirections(cocktail.directions)}
           </div>
         </div>
-        <div className={s.video}><YoutubeEmbed embedId='dQw4w9WgXcQ' /></div>
+        {cocktail.youtube ? <div className={s.video}><YoutubeEmbed embedId={cocktail.youtube} /></div> : <></>}
       </div>
-    </div>
+    </div >
   )
 }
 
