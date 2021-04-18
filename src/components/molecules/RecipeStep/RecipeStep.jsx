@@ -1,7 +1,7 @@
 import React from 'react';
-import s from './M_Recipe_Step.module.scss'
+import s from './RecipeStep.module.scss'
 
-const M_Recipe_Step = ({ step, text }) => {
+export const RecipeStep = ({ step, text }) => {
   return (
     <div className={s.wrapper}>
       <div className={s.step}>{step}.</div>
@@ -9,5 +9,3 @@ const M_Recipe_Step = ({ step, text }) => {
     </div>
   );
 };
-
-export default M_Recipe_Step;

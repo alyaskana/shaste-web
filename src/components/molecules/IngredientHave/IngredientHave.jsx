@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import s from './M_Ingredient_Have.module.scss';
+import s from './IngredientHave.module.scss';
 import UserContext from '../../../userContext'
-import A_Icon from '../atoms/A_Icon';
+import { Icon } from '@atoms/Icon';
 import availableIcon from './../../../assets/images/icons/available.svg'
 import unavailableIcon from './../../../assets/images/icons/unavailable.svg'
 
-const M_Ingredient_Have = ({ ingredient }) => {
+export const IngredientHave = ({ ingredient }) => {
   const user = useContext(UserContext)
   const isAvailable = (ingredient, user) => {
     return !!user.ingredients.find((i) => i.id == ingredient.id)
@@ -20,7 +20,7 @@ const M_Ingredient_Have = ({ ingredient }) => {
         <p className={s.amount}>
           {ingredient.amount}
         </p>
-        <A_Icon
+        <Icon
           src={unavailableIcon}
           srcHover={unavailableIcon}
           srcActive={availableIcon}
@@ -29,5 +29,3 @@ const M_Ingredient_Have = ({ ingredient }) => {
     </div>
   );
 };
-
-export default M_Ingredient_Have;

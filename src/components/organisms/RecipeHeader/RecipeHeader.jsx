@@ -1,15 +1,15 @@
 import React from 'react';
-import s from './O_Recipe_Header.module.scss'
+import s from './RecipeHeader.module.scss'
 import taste_icon from '../../../assets/images/icons/toast_icon_default.svg'
 import taste_icon_active from '../../../assets/images/icons/toast_icon_active.svg'
 import save_icon from '../../../assets/images/icons/save_icon_default.svg'
 import save_icon_active from '../../../assets/images/icons/save_icon_active.svg'
 import like_icon from '../../../assets/images/icons/like_icon_default.svg'
 import like_icon_active from '../../../assets/images/icons/like_icon_active.svg'
-import ActionIcon from '../atoms/A_Action_Icon'
+import { ActionIcon } from '../../atoms/ActionIcon'
 import { NavLink } from "react-router-dom";
 
-const O_Recipe_Header = ({ cocktail }) => {
+export const RecipeHeader = ({ cocktail }) => {
   return (
     <div className={s.cocktail_header}>
       <div className={s.cocktail_title}>
@@ -47,5 +47,3 @@ const O_Recipe_Header = ({ cocktail }) => {
     </div>
   );
 };
-
-export default O_Recipe_Header;

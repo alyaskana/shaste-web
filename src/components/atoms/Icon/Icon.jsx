@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import s from './A_Action_Icon.module.scss'
+import s from './ActionIcon.module.scss'
 
-const A_Icon = ({ src, srcHover, srcActive, isActive }) => {
+export const Icon = ({ src, srcHover, srcActive, isActive }) => {
   const [currentSrc, setCurrentSrc] = useState(src)
   console.log(isActive);
   if (isActive) {
@@ -25,8 +25,6 @@ const A_Icon = ({ src, srcHover, srcActive, isActive }) => {
     </div>
   )
 }
-
-export default A_Icon
 
 // <Action icon={<Icon src='ddd' srcHover='' />} count={ } />
 

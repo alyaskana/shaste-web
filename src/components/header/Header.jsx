@@ -4,7 +4,7 @@ import s from "./Header.module.scss"
 import UserContext from '../../userContext'
 import logo from '../../assets/images/a-logo.svg'
 import icon_find from '../../assets/images/icons/a-icon-find.svg'
-import useUser from "../App/useUser";
+import useUser from "@/hooks/useUser";
 
 const Header = (props) => {
   const user = useContext(UserContext)

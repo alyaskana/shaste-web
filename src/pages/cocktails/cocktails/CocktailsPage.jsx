@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import * as axios from "axios";
-import M_Recipe_Card from "../../../components/Cocktails/molecules/M_Recipe_Card";
+import { RecipeCard } from "@molecules/RecipeCard";
 import s from './CocktailsPage.module.scss'
 import Masonry from "react-masonry-css";
 
@@ -26,7 +26,7 @@ const CocktailsPage = () => {
           columnClassName={s.my_masonry_grid_column}>
           {cocktails.map(cocktail => (
             <NavLink to={'/cocktails/' + cocktail.id} className={s.cocktail_wrapper}>
-              <M_Recipe_Card
+              <RecipeCard
                 key={cocktail.id}
                 src={"//localhost:3000" + cocktail.image.url}
                 title={cocktail.title}

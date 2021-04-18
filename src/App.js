@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import useUser from './components/App/useUser';
+import useUser from '@/hooks/useUser';
 import CocktailPage from './pages/cocktails/cocktail/CocktailPage';
 import CocktailsPage from './pages/cocktails/cocktails/CocktailsPage';
 import CollectionsPage from './pages/cocktails/collections/CollectionsPage';
