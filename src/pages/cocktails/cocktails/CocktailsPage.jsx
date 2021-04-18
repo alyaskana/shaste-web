@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import * as axios from "axios";
-import M_Recipe_Card from "../Molecules/M_Recipe_Card/M_Recipe_Card";
+import M_Recipe_Card from "../../../components/Cocktails/molecules/M_Recipe_Card";
 import s from './CocktailsPage.module.scss'
 import Masonry from "react-masonry-css";
 

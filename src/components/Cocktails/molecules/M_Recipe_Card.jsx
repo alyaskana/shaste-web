@@ -1,6 +1,6 @@
 import React from 'react';
-import A_Card_Photo from '../../Atoms/A_Card_Photo/A_Card_Photo';
-import A_Ingredient from '../../Atoms/A_Ingredient/A_Ingredient';
+import A_Card_Photo from '../atoms/A_Card_Photo';
+import A_Ingredient from '../atoms/A_Ingredient';
 import s from './M_Recipe_Card.module.scss'
 
 const M_Recipe_Card = ({ src, title, ingredients }) => {

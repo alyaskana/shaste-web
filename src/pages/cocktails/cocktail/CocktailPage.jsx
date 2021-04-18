@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import * as axios from "axios";
 import s from './CocktailPage.module.scss'
-import A_Card_Photo from "../../Atoms/A_Card_Photo/A_Card_Photo";
-import A_Title_Secondary from "./A_Title_Secondary";
-import M_Ingredient_Have from "./M_Ingredient_Have";
-import O_Recipe_Header from "./O_Recipe_Header";
-import M_Recipe_Step from "./M_Recipe_Step";
-import YoutubeEmbed from "../../App/YoutubeEmbed";
+import A_Card_Photo from "../../../components/Cocktails/atoms/A_Card_Photo";
+import A_Title_Secondary from "../../../components/Cocktails/atoms/A_Title_Secondary";
+import M_Ingredient_Have from "../../../components/Cocktails/molecules/M_Ingredient_Have";
+import M_Recipe_Step from "../../../components/Cocktails/molecules/M_Recipe_Step";
+import O_Recipe_Header from "../../../components/Cocktails/organisms/O_Recipe_Header";
+import YoutubeEmbed from "../../../components/App/YoutubeEmbed";
 
 const cocktailIngredients = (ingredients) => {
   return ingredients.map(ingredient => {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import s from './M_Ingredient_Have.module.scss';
 import UserContext from '../../../userContext'
-import A_Icon from './A_Icon';
+import A_Icon from '../atoms/A_Icon';
 import availableIcon from './../../../assets/images/icons/available.svg'
 import unavailableIcon from './../../../assets/images/icons/unavailable.svg'
 

@@ -6,7 +6,7 @@ import save_icon from '../../../assets/images/icons/save_icon_default.svg'
 import save_icon_active from '../../../assets/images/icons/save_icon_active.svg'
 import like_icon from '../../../assets/images/icons/like_icon_default.svg'
 import like_icon_active from '../../../assets/images/icons/like_icon_active.svg'
-import ActionIcon from './A_Action_Icon'
+import ActionIcon from '../atoms/A_Action_Icon'
 import { NavLink } from "react-router-dom";
 
 const O_Recipe_Header = ({ cocktail }) => {
