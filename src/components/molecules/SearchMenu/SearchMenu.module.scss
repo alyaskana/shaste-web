@@ -1,0 +1,33 @@
+@import '/src/variables.scss';
+
+.search {
+  display: flex;
+  align-items: center;
+
+  &_input {
+    @keyframes showInput {
+      from {
+        width: 0px;
+      }
+    }
+
+    height: 40px;
+    width: 360px;
+    border: 1px solid $black;
+    outline: none;
+    padding: 0 15px;
+    font-size: 18px;
+    animation: showInput 0.2s;
+  }
+
+  .icon_wrapper {
+    margin-left: 10px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+
+    .icon {
+      width: 100%;
+    }
+  }
+}

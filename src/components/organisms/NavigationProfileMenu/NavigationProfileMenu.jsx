@@ -1,0 +1,38 @@
+import React from 'react';
+import { NavLink } from "react-router-dom"
+import s from './NavigationProfileMenu.module.scss'
+
+export const NavigationProfileMenu = ({ user, setUser }) => {
+  const handleLogout = () => {
+    setUser('')
+    window.location.reload()
+  }
+
+  return (
+    <div className={s.user_menu_wrapper}>
+      <div className={s.user_menu}>
+        <NavLink to='/profile'>
+          <div className={s.header}>
+            <div className={s.avatar_wrapper}>
+              <img src={"//localhost:3000" + user.avatar.thumb.url} alt="" />
+            </div>
+            <div className={s.bio}>
+              <div className={s.name}>{user.user_name}</div>
+              <div className={s.login}>@{user.login}</div>
+            </div>
+          </div>
+        </NavLink>
+        <div className={s.separator}></div>
+        <div className={s.links}>
+          <NavLink to='/profile' className={s.link}>мой бар</NavLink>
+          <NavLink to='/profile' className={s.link}>избранное</NavLink>
+          <NavLink to='/profile' className={s.link}>настройки</NavLink>
+        </div>
+        <div className={s.separator}></div>
+        <div className={s.logout} onClick={handleLogout} >
+          выйти
+        </div>
+      </div>
+    </div>
+  );
+};

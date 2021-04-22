@@ -1,0 +1,10 @@
+@import '/src/variables.scss';
+
+.btn {
+  background-color: $secondary;
+  font-family: 'Akzidenz Grotesk';
+  font-size: 22px;
+  padding: 5px 10px 8px;
+  color: white;
+  cursor: pointer;
+}

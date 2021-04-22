@@ -2,13 +2,14 @@ import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import useUser from '@/hooks/useUser';
-import CocktailPage from './pages/cocktails/cocktail/CocktailPage';
-import CocktailsPage from './pages/cocktails/cocktails/CocktailsPage';
-import CollectionsPage from './pages/cocktails/collections/CollectionsPage';
+import CocktailPage from './pages/cocktail/CocktailPage';
+import CocktailsPage from './pages/cocktails/CocktailsPage';
+import CollectionsPage from './pages/collections/CollectionsPage';
 import FeedPage from './pages/feed/FeedPage';
-import Header from './components/Header/Header';
+import { Header } from './components/organisms/Header/Header';
 import LoginPage from './pages/login/LoginPage';
 import UserContext from './userContext'
+import { NewCocktailPage } from './pages/NewCocktail';
 
 function App() {
   const { user, setUser } = useUser();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path='/cocktails'>
             <CocktailsPage />
+          </Route>
+          <Route exact path='/cocktails/new'>
+            <NewCocktailPage />
           </Route>
           <Route exact path='/cocktails/:id' render={(props) => <CocktailPage {...props} />} />
         </Switch>

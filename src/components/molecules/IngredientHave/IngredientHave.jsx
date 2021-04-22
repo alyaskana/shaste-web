@@ -8,7 +8,7 @@ import unavailableIcon from './../../../assets/images/icons/unavailable.svg'
 export const IngredientHave = ({ ingredient }) => {
   const user = useContext(UserContext)
   const isAvailable = (ingredient, user) => {
-    return !!user.ingredients.find((i) => i.id == ingredient.id)
+    return !!user.ingredients.find((i) => i.id === ingredient.id)
   }
 
   return (
@@ -20,11 +20,11 @@ export const IngredientHave = ({ ingredient }) => {
         <p className={s.amount}>
           {ingredient.amount}
         </p>
-        <Icon
+        {user && <Icon
           src={unavailableIcon}
           srcHover={unavailableIcon}
           srcActive={availableIcon}
-          isActive={isAvailable(ingredient, user)} />
+          isActive={isAvailable(ingredient, user)} />}
       </div>
     </div>
   );
