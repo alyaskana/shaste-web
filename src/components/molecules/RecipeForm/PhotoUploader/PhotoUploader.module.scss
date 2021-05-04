@@ -1,0 +1,26 @@
+@import '@/variables.scss';
+
+.photo_uploader {
+  display: flex;
+  gap: 28px;
+  margin-left: -64px;
+  align-items: center;
+
+  .label {
+    font-family: 'Akzidenz Grotesk';
+    font-size: 22px;
+    border-bottom: 1px solid $black;
+    cursor: pointer;
+  }
+
+  .input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
+.prewiew {
+  margin-top: 8px;
+  max-width: 268px;
+}

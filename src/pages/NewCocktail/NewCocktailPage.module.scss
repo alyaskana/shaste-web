@@ -1,0 +1,64 @@
+@import '/src/variables.scss';
+
+.page_wrapper {
+  max-width: 886px;
+  margin: 0 auto;
+
+  .form {
+    margin-bottom: 58px;
+
+    .btn_wrapper {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+
+  .title_wrapper {
+    margin: 64px 0 40px;
+
+    div {
+      font-size: 72px;
+    }
+  }
+
+  .ingredients {
+    display: flex;
+    gap: 28px;
+  }
+
+  fieldset {
+    margin-bottom: 40px;
+    counter-reset: steps;
+
+    input {
+      outline: none;
+      border: 1px solid $black;
+      padding: 12px 20px 10px;
+    }
+
+    textarea {
+      display: block;
+      margin-bottom: 16px;
+      border: 1px solid $black;
+      resize: none;
+      outline: none;
+      padding: 12px 20px;
+      font-size: 20px;
+      font-family: 'Akzidenz Grotesk';
+    }
+  }
+
+  h2 {
+    font-family: 'Baskerville';
+    font-size: 40px;
+    font-style: italic;
+    margin-bottom: 16px;
+
+    .caption {
+      font-size: 20px;
+      color: $grey_3;
+      margin-left: 5px;
+    }
+  }
+}

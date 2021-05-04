@@ -1,0 +1,13 @@
+div.control {
+  border-color: white;
+
+  &:hover {}
+}
+
+.select {
+  &-control {
+    &:hover {
+      background-color: yellowgreen;
+    }
+  }
+}

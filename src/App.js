@@ -6,7 +6,8 @@ import CocktailPage from './pages/cocktail/CocktailPage';
 import CocktailsPage from './pages/cocktails/CocktailsPage';
 import CollectionsPage from './pages/collections/CollectionsPage';
 import FeedPage from './pages/feed/FeedPage';
-import { Header } from './components/organisms/Header/Header';
+import { Header } from '@organisms/Header';
+import { Footer } from '@organisms/Footer';
 import LoginPage from './pages/login/LoginPage';
 import UserContext from './userContext'
 import { NewCocktailPage } from './pages/NewCocktail';
@@ -39,6 +40,7 @@ function App() {
           </Route>
           <Route exact path='/cocktails/:id' render={(props) => <CocktailPage {...props} />} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </UserContext.Provider>
   );

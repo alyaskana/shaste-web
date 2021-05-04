@@ -1,9 +1,10 @@
 @import '/src/variables.scss';
 
 .img_wrapper {
-  max-width: 312px;
-  height: 420px;
+  aspect-ratio: 312 / 420;
   border: 1px solid $black;
+  background: no-repeat center;
+  background-size: cover;
 
   .img {
     width: 100%;
