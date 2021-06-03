@@ -1,0 +1,102 @@
+@import '/src/variables.scss';
+
+.form {
+  margin-bottom: 58px;
+
+  fieldset {
+    margin-bottom: 40px;
+    counter-reset: steps;
+  }
+
+  label {
+    font-family: 'Baskerville';
+    font-size: 40px;
+    font-style: italic;
+    margin-bottom: 16px;
+    display: inline-block;
+
+    .caption {
+      font-size: 20px;
+      color: $grey_3;
+      margin-left: 5px;
+    }
+  }
+
+  input {
+    outline: none;
+    border: 1px solid $black;
+    padding: 12px 20px 10px;
+    font-family: 'Baskerville';
+    font-size: 40px;
+    font-style: italic;
+    width: 100%;
+  }
+
+  textarea {
+    display: block;
+    margin-bottom: 16px;
+    border: 1px solid $black;
+    resize: none;
+    outline: none;
+    padding: 12px 20px;
+    font-size: 20px;
+    font-family: 'Akzidenz Grotesk';
+  }
+}
+
+.ingredients {
+  display: flex;
+  gap: 28px;
+}
+
+.ingredient_row {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 16px;
+
+  .ingredient_name {
+    max-width: 430px;
+  }
+
+  .ingredient_count {
+    max-width: 170px;
+  }
+
+  input {
+    font-size: 20px;
+    font-family: 'Akzidenz Grotesk';
+  }
+}
+
+.step {
+  position: relative;
+  font-size: 20px;
+  font-family: 'Akzidenz Grotesk';
+
+  textarea {
+    width: 100%;
+    height: 100px;
+    max-width: 617px;
+  }
+}
+
+.step::before {
+  counter-increment: steps;
+  content: counter(steps) ".";
+  position: absolute;
+  left: -58px;
+  top: 0;
+  font-family: 'Baskerville';
+  font-style: italic;
+  font-size: 40px;
+  text-align: right;
+}
+
+.plus_btn {
+  margin-top: 16px;
+  font-size: 30px;
+  height: 36px;
+  width: 36px;
+  text-align: center;
+  cursor: pointer;
+}

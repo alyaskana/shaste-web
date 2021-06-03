@@ -1,7 +1,4 @@
-import React, { Component, FC } from 'react';
-import s from './Categories.module.scss'
-import Select, { components } from 'react-select';
-import { colourOptions } from './docs/data';
+import { FC } from 'react';
 import { Selector } from './Selector'
 
 enum TagType {
@@ -16,23 +13,24 @@ export type TCategory = {
 }
 
 type TCategoriesProps = {
-  categories: TCategory[]
+  categories: TCategory[],
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
 }
 
-export const Categories: FC<TCategoriesProps> = ({ categories }) => {
-  const tastes = categories.filter(category => category.tag_type == TagType.taste).map(c => ({
+export const Categories: FC<TCategoriesProps> = ({ categories, setFieldValue }) => {
+  const tastes = categories.filter(category => category.tag_type === TagType.taste).map(c => ({
     value: c.id.toString(),
     label: c.name,
   }))
-  const goals = categories.filter(category => category.tag_type == TagType.goal).map(c => ({
+  const goals = categories.filter(category => category.tag_type === TagType.goal).map(c => ({
     value: c.id.toString(),
     label: c.name,
   }))
 
   return (
     <>
-      <Selector options={goals} />
-      <Selector options={tastes} />
+      <Selector options={goals} setFieldValue={setFieldValue} name='tags[goals]' />
+      <Selector options={tastes} setFieldValue={setFieldValue} name='tags[tastes]' />
     </>
   );
 };

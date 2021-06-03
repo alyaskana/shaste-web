@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Select from 'react-select';
 
-export const Selector = (props) => {
+type TOption = {
+  label: string,
+  value: string
+}
+
+type TSelectorProps = {
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
+  name: string,
+  options: TOption[]
+}
+
+export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options }) => {
+  const handleOnChange = (selectedOption: TOption[]) => {
+    setFieldValue(name, selectedOption)
+  }
+
   return (
     <Select
       closeMenuOnSelect={false}
       isMulti
-      options={props.options}
+      options={options}
       className="basic-multi-select"
       classNamePrefix='select'
       hideSelectedOptions={false}
+      onChange={handleOnChange}
       styles={{
         control: base => ({
           ...base,

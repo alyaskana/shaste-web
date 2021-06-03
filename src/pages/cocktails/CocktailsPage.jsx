@@ -5,10 +5,6 @@ import { RecipeCard } from "@molecules/RecipeCard";
 import s from './CocktailsPage.module.scss'
 import Masonry from "react-masonry-css";
 
-const cocktailIngredients = (ingredients) => {
-  return ingredients.map(ingredient => ingredient.name).join(', ')
-}
-
 const CocktailsPage = () => {
   const [cocktails, setCocktails] = useState([])
   useEffect(() => {
