@@ -7,6 +7,8 @@ type TPhotoUploaderProps = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
 }
 
+const name = 'photo'
+
 export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
   const [imgPrewiew, setImgPrewiew] = useState('')
 
@@ -17,7 +19,7 @@ export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
     }
     let file = event.target.files[0];
 
-    setFieldValue("photo", file)
+    setFieldValue(name, file)
 
     reader.onloadend = () => {
       const url = typeof (reader.result) === 'string' ? reader.result : ''
@@ -30,8 +32,8 @@ export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
     <>
       <div className={s.photo_uploader}>
         <IconPhoto />
-        <label className={s.label} htmlFor="photo">выберите фото</label>
-        <input className={s.input} name='photo' type='file' id='photo' onChange={handleUpload} />
+        <label className={s.label} htmlFor={name}>выберите фото</label>
+        <input className={s.input} name={name} type='file' id={name} onChange={handleUpload} />
       </div>
       {imgPrewiew &&
         <div className={s.prewiew}>

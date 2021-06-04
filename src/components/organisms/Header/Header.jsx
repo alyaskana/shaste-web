@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom"
 import s from "./Header.module.scss"
-import UserContext from '@/userContext'
+import UserContext from '@context/userContext'
 import useUser from "@/hooks/useUser";
 import { NavigationProfileMenu } from '@organisms/NavigationProfileMenu'
 import { NavigationMenu } from "@molecules/NavigationMenu";
@@ -10,7 +10,7 @@ import { SearchMenu } from '@molecules/SearchMenu'
 import { Button } from "@atoms/Button";
 
 export const Header = (props) => {
-  const user = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const { setUser } = useUser();
   const [showUserMenu, setUserMenu] = useState(false)
 

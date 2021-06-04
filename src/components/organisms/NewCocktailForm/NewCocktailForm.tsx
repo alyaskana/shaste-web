@@ -1,19 +1,22 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import s from './NewCocktailForm.module.scss'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { PhotoUploader } from '@components/molecules/PhotoUploader';
-import { Categories } from '@organisms/Categories'
+import { Categories, TCategory } from '@organisms/Categories'
+import { post } from '@api/apiFetcher';
+import UserContext from '@context/userContext'
 
 type TNewCocktailFormProps = {
-  categories: []
+  categories: TCategory[]
 }
 
 export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
+  const { token } = useContext(UserContext)
   return (
     <Formik
       initialValues={{
-        cocktailName: '',
+        title: '',
         ingredients: [
           {
             name: '',
@@ -22,16 +25,24 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
         ],
         steps: ['',],
         photo: null,
+        youtube: '',
         tags: { goals: [], tastes: [] },
       }}
       validationSchema={Yup.object({
-        cocktailName: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле'),
+        title: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле')
       })}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          console.log(values);
-
-          alert(JSON.stringify(values, null, 2));
+          const data = {
+            cocktail: {
+              ...values,
+              tags: [
+                ...values.tags.goals.map(goal => goal.value),
+                ...values.tags.tastes.map(taste => taste.value)
+              ]
+            }
+          }
+          post('cocktails', data, token)
           setSubmitting(false);
         }, 400);
       }}
@@ -39,13 +50,13 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
       {({ values, setFieldValue }) => (
         <Form className={s.form}>
           <fieldset>
-            <label htmlFor="cocktailName">как называется ваш коктейль?</label>
+            <label htmlFor="title">как называется ваш коктейль?</label>
             <Field
-              name="cocktailName"
+              name="title"
               type="text"
               placeholder='маргарита, текила санрайз, молочный пунш'
             />
-            <ErrorMessage name="cocktailName" />
+            <ErrorMessage name="title" />
           </fieldset>
 
           <fieldset>
@@ -103,8 +114,8 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
           </fieldset>
 
           <fieldset>
-            <label htmlFor="link">у вас есть youtube видео?</label>
-            <Field name='link' />
+            <label htmlFor="youtube">у вас есть youtube видео?</label>
+            <Field name='youtube' />
           </fieldset>
 
           <fieldset>

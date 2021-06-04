@@ -29,8 +29,8 @@ export const Categories: FC<TCategoriesProps> = ({ categories, setFieldValue }) 
 
   return (
     <>
-      <Selector options={goals} setFieldValue={setFieldValue} name='tags[goals]' />
-      <Selector options={tastes} setFieldValue={setFieldValue} name='tags[tastes]' />
+      <Selector options={goals} setFieldValue={setFieldValue} name='tags.goals' />
+      <Selector options={tastes} setFieldValue={setFieldValue} name='tags.tastes' />
     </>
   );
 };

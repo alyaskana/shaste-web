@@ -2,10 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@": ["/"],
+      "@": [""],
       "@icons/*": ["assets/images/icons/*"],
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
+      "@context/*": ["context/*"],
       "@atoms/*": ["components/atoms/*"],
       "@molecules/*": ["components/molecules/*"],
       "@organisms/*": ["components/organisms/*"]

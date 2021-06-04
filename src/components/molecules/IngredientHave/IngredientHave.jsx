@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import s from './IngredientHave.module.scss';
-import UserContext from '../../../userContext'
+import UserContext from '@context/userContext'
 import { Icon } from '@atoms/Icon';
 import availableIcon from './../../../assets/images/icons/available.svg'
 import unavailableIcon from './../../../assets/images/icons/unavailable.svg'
 
 export const IngredientHave = ({ ingredient }) => {
-  const user = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const isAvailable = (ingredient, user) => {
     return !!user.ingredients.find((i) => i.id === ingredient.id)
   }

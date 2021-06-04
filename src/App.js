@@ -9,7 +9,7 @@ import FeedPage from './pages/feed/FeedPage';
 import { Header } from '@organisms/Header';
 import { Footer } from '@organisms/Footer';
 import LoginPage from './pages/login/LoginPage';
-import UserContext from './userContext'
+import UserContext from '@context/userContext'
 import { NewCocktailPage } from './pages/NewCocktail';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   //   return <Login setUser={setUser} />
   // }
   return (
-    <UserContext.Provider value={user?.user}>
+    <UserContext.Provider value={user}>
       <BrowserRouter>
         <Header />
         <Switch>
