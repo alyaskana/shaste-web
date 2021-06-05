@@ -6,21 +6,31 @@ import { PhotoUploader } from '@components/molecules/PhotoUploader';
 import { Categories, TCategory } from '@organisms/Categories'
 import { post } from '@api/apiFetcher';
 import UserContext from '@context/userContext'
+import { Ingredients, TIngredientOption } from '@molecules/Ingredients'
+import { useHistory } from 'react-router-dom';
+import { serialize } from 'object-to-formdata';
 
 type TNewCocktailFormProps = {
-  categories: TCategory[]
+  categories: TCategory[],
+  ingredientsOptions: TIngredientOption[],
+  updateIngrediensOptions: (text: string) => void
 }
 
-export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
+export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions, categories, updateIngrediensOptions }) => {
   const { token } = useContext(UserContext)
+  const history = useHistory()
   return (
     <Formik
       initialValues={{
         title: '',
+        description: '',
         ingredients: [
           {
-            name: '',
-            count: ''
+            ingredient: {
+              label: '',
+              value: ''
+            },
+            amount: ''
           },
         ],
         steps: ['',],
@@ -32,19 +42,21 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
         title: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле')
       })}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          const data = {
-            cocktail: {
-              ...values,
-              tags: [
-                ...values.tags.goals.map(goal => goal.value),
-                ...values.tags.tastes.map(taste => taste.value)
-              ]
-            }
+        const data = {
+          cocktail: {
+            ...values,
+            tags: [
+              ...values.tags.goals.map(goal => goal.value),
+              ...values.tags.tastes.map(taste => taste.value)
+            ],
+            ingredients: values.ingredients.map(i => ({ id: i.ingredient.value, amount: i.amount }))
           }
-          post('cocktails', data, token)
-          setSubmitting(false);
-        }, 400);
+        }
+        post('cocktails', serialize(data), token, { "Content-Type": "multipart/form-data" }).then(response => {
+          console.log(response.data.id);
+          history.push(`/cocktails/${response.data.id}`);
+        })
+        setSubmitting(false);
       }}
     >
       {({ values, setFieldValue }) => (
@@ -60,30 +72,26 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
           </fieldset>
 
           <fieldset>
+            <label htmlFor="description">небольшое описание</label>
+            <Field
+              name="description"
+              as='textarea'
+              placeholder='пару слов туда-сюда сделай'
+              className={s.textarea}
+            />
+            <ErrorMessage name="description" />
+          </fieldset>
+
+          <fieldset>
             <div className={s.ingredients}>
               <label htmlFor="ingredients">какие нужны ингредиенты?</label>
               <label htmlFor="ingredients">сколько?<span className={s.caption}>необязательно</span></label>
             </div>
-            <FieldArray
-              name="ingredients"
-              render={arrayHelpers => (
-                <div>
-                  {values.ingredients.map((ingredient, index) => (
-                    <div key={index}>
-                      <div className={s.ingredient_row}>
-                        <Field className={s.ingredient_name} name={`ingredients[${index}].name`} placeholder='клубника' />
-                        <Field className={s.ingredient_count} name={`ingredients.${index}.count`} placeholder='25 мл' />
-                      </div>
-                      {/* <div className={s.plus_btn} onClick={() => arrayHelpers.remove(index)}>
-                        -
-                      </div> */}
-                    </div>
-                  ))}
-                  <div className={s.plus_btn} onClick={() => arrayHelpers.push({ name: '', count: '' })}>
-                    +
-                  </div>
-                </div>
-              )}
+            <Ingredients
+              selectedIngredients={values.ingredients}
+              ingredientsOptions={ingredientsOptions}
+              setFieldValue={setFieldValue}
+              updateIngrediensOptions={updateIngrediensOptions}
             />
           </fieldset>
 
@@ -96,7 +104,11 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ categories }) => {
                   {values.steps.map((step, index) => (
                     <div key={index}>
                       <div className={s.step}>
-                        <Field name={`steps[${index}]`} as='textarea' className={s.textarea} placeholder='что нужно сделать' />
+                        <Field
+                          name={`steps[${index}]`}
+                          as='textarea'
+                          className={s.textarea}
+                          placeholder='что нужно сделать' />
                       </div>
                     </div>
                   ))}

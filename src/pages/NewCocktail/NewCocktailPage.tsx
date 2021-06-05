@@ -15,12 +15,28 @@ export const NewCocktailPage = () => {
     })
   }, []);
 
+  const [ingrediensOptions, setIngrediensOptions] = useState([])
+
+  const updateIngrediensOptions = (text: string) => {
+    if (text.length < 3) {
+      return setIngrediensOptions([])
+    }
+    get(`ingredients?search=${text}`).then(response => {
+      const options = response.data.ingredients.map(i => ({ label: i.name, value: i.id }))
+      setIngrediensOptions(options)
+    })
+  }
+
   return (
     <div className={s.page_wrapper}>
       <div className={s.title_wrapper}>
         <TitleSecondary title='СОЗДАЕМ РЕЦЕПТ' font={Font.SK_Zweig} />
       </div>
-      <NewCocktailForm categories={categories} />
+      <NewCocktailForm
+        ingredientsOptions={ingrediensOptions}
+        categories={categories}
+        updateIngrediensOptions={updateIngrediensOptions}
+      />
     </div>
   );
 };

@@ -44,30 +44,6 @@
   }
 }
 
-.ingredients {
-  display: flex;
-  gap: 28px;
-}
-
-.ingredient_row {
-  display: flex;
-  gap: 28px;
-  margin-bottom: 16px;
-
-  .ingredient_name {
-    max-width: 430px;
-  }
-
-  .ingredient_count {
-    max-width: 170px;
-  }
-
-  input {
-    font-size: 20px;
-    font-family: 'Akzidenz Grotesk';
-  }
-}
-
 .step {
   position: relative;
   font-size: 20px;
@@ -78,6 +54,12 @@
     height: 100px;
     max-width: 617px;
   }
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+  max-width: 617px;
 }
 
 .step::before {

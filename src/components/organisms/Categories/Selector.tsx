@@ -9,10 +9,11 @@ type TOption = {
 type TSelectorProps = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
   name: string,
-  options: TOption[]
+  options: TOption[],
+  placeholder: string
 }
 
-export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options }) => {
+export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, placeholder }) => {
   const handleOnChange = (selectedOption: TOption[]) => {
     setFieldValue(name, selectedOption)
   }
@@ -26,13 +27,15 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options }) =
       classNamePrefix='select'
       hideSelectedOptions={false}
       onChange={handleOnChange}
+      placeholder={placeholder}
       styles={{
         control: base => ({
           ...base,
-          '&:hover': { borderColor: 'gray' }, // border style on hover
-          border: '1px solid lightgray', // default border color
-          boxShadow: 'none', // no box-shadow
+          '&:hover': { borderColor: '#101010' },
+          border: '1px solid #101010',
+          boxShadow: 'none',
           cursor: 'pointer',
+          borderRadius: '0'
         }),
         multiValue: base => ({
           ...base,
@@ -64,6 +67,11 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options }) =
             backgroundColor: 'gray',
           },
         }),
+        placeholder: base => ({
+          ...base,
+          fontSize: '20px',
+          fontFamily: 'Akzidenz Grotesk',
+        }),
         multiValueRemove: styles => ({
           ...styles,
           color: 'rgb(0,0,0,0.5)',
@@ -72,6 +80,11 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options }) =
             color: '#101010',
           },
         }),
+        valueContainer: base => ({
+          ...base,
+          padding: '12px 22px',
+          lineHeight: 'normal',
+        })
       }}
     />
   );
