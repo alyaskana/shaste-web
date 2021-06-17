@@ -52,7 +52,7 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
             ingredients: values.ingredients.map(i => ({ id: i.ingredient.value, amount: i.amount }))
           }
         }
-        post('cocktails', serialize(data), token, { "Content-Type": "multipart/form-data" }).then(response => {
+        post('cocktails', serialize(data), { "Content-Type": "multipart/form-data" }).then(response => {
           console.log(response.data.id);
           history.push(`/cocktails/${response.data.id}`);
         })

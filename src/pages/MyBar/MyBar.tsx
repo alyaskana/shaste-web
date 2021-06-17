@@ -3,15 +3,15 @@ import s from './MyBar.module.scss'
 import Select from 'react-select';
 import { get, post } from '@api/apiFetcher'
 import UserContext from '@context/userContext'
-import useUser from '@hooks/useUser';
+import { userStore } from '@/store'
 
 export const MyBar = () => {
   const userData = useContext(UserContext)
-  const { setUser } = useUser();
 
-  const { user, token } = userData
+  const user = userStore.getState();
 
   const [ingredientsOptions, setIngredientsOptions] = useState([])
+
   useEffect(() => {
     get(`ingredients`).then(response => {
       setIngredientsOptions(response.data.ingredients
@@ -33,9 +33,8 @@ export const MyBar = () => {
   }, [user.ingredients, userData]);
 
   const handleAddIngredient = (selectedItem) => {
-    post('profile/ingredients', { id: selectedItem.value }, token, { "Content-Type": "application/json" }).then((response) => {
+    post('profile/ingredients', { id: selectedItem.value }, { "Content-Type": "application/json" }).then((response) => {
       user.ingredients = response.data.ingredients
-      setUser(userData)
     })
   }
 

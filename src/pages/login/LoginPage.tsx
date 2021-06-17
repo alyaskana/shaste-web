@@ -1,5 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { setToken, setUser } from '../../event';
+import { tokenStore, userStore } from '../../store';
 import s from './Login.module.scss'
 
 async function loginUser(credentials) {
@@ -10,7 +12,7 @@ async function loginUser(credentials) {
   }).then(response => ({ token: response.headers.authorization, user: response.data }))
 }
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = () => {
   const [useremail, setUserEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -22,7 +24,8 @@ const LoginPage = ({ setUser }) => {
         password
       }
     });
-    setUser(userData);
+    setUser(userData.user);
+    setToken(userData.token)
   }
 
   return (
@@ -44,5 +47,8 @@ const LoginPage = ({ setUser }) => {
     </div>
   );
 };
+
+(tokenStore as any).on(setToken, (_state: any, token: any) => token);
+(userStore as any).on(setUser, (_state: any, user: any) => user);
 
 export default LoginPage;
