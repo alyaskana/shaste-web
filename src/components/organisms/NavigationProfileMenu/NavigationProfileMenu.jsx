@@ -24,7 +24,7 @@ export const NavigationProfileMenu = ({ user, setUser }) => {
         </NavLink>
         <div className={s.separator}></div>
         <div className={s.links}>
-          <NavLink to='/profile' className={s.link}>мой бар</NavLink>
+          <NavLink to='/profile/mybar' className={s.link}>мой бар</NavLink>
           <NavLink to='/profile' className={s.link}>избранное</NavLink>
           <NavLink to='/profile' className={s.link}>настройки</NavLink>
         </div>

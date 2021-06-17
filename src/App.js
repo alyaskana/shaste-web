@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import useUser from '@/hooks/useUser';
+import useUser from './hooks/useUser';
 import CocktailPage from './pages/cocktail/CocktailPage';
 import CocktailsPage from './pages/cocktails/CocktailsPage';
 import CollectionsPage from './pages/collections/CollectionsPage';
@@ -11,6 +11,8 @@ import { Footer } from '@organisms/Footer';
 import LoginPage from './pages/login/LoginPage';
 import UserContext from '@context/userContext'
 import { NewCocktailPage } from './pages/NewCocktail';
+import { Profile } from './pages/Profile'
+import { MyBar } from './pages/MyBar'
 
 function App() {
   const { user, setUser } = useUser();
@@ -28,6 +30,12 @@ function App() {
           </Route>
           <Route exact path='/feed'>
             <FeedPage />
+          </Route>
+          <Route exact path='/profile'>
+            <Profile />
+          </Route>
+          <Route exact path='/profile/mybar'>
+            <MyBar />
           </Route>
           <Route exact path='/collections'>
             <CollectionsPage />
