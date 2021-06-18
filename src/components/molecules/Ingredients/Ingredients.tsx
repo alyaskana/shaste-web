@@ -61,7 +61,7 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
         input: base => ({
           ...base,
           fontSize: '20px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
           margin: '0',
           padding: '0',
         }),
@@ -79,7 +79,7 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
           color: "#101010",
           fontSize: '20px',
           lineHeight: '28px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
           ':active': {
             ...base[':active'],
             backgroundColor: 'gray',
@@ -88,12 +88,12 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
         placeholder: base => ({
           ...base,
           fontSize: '20px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
         }),
         singleValue: base => ({
           ...base,
           fontSize: '20px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
         }),
         valueContainer: base => ({
           ...base,
@@ -144,7 +144,7 @@ export const Ingredients: FC<TIngredientsProps> = ({ ingredientsOptions, selecte
           ))}
           <div className={s.plus_btn} onClick={() => arrayHelpers.push({ name: '', amount: '' })}>
             +
-                  </div>
+          </div>
         </div>
       )}
     />

@@ -44,7 +44,7 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
           padding: '0 12px',
           fontSize: '20px',
           lineHeight: '28px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
           backgroundColor: 'white',
         }),
         option: (base, { isDisabled, isFocused, isSelected }) => ({
@@ -61,7 +61,7 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
           color: "#101010",
           fontSize: '20px',
           lineHeight: '28px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
           ':active': {
             ...base[':active'],
             backgroundColor: 'gray',
@@ -70,7 +70,7 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
         placeholder: base => ({
           ...base,
           fontSize: '20px',
-          fontFamily: 'Akzidenz Grotesk',
+          fontFamily: 'Akzidenz-Grotesk Pro',
         }),
         multiValueRemove: styles => ({
           ...styles,

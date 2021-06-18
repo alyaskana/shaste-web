@@ -1,18 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useStore } from "effector-react";
 import { NavLink } from "react-router-dom"
 import s from "./Header.module.scss"
-import UserContext from '@context/userContext'
-import useUser from "@hooks/useUser";
 import { NavigationProfileMenu } from '@organisms/NavigationProfileMenu'
 import { NavigationMenu } from "@molecules/NavigationMenu";
 import { Logo } from '@atoms/Logo'
 import { SearchMenu } from '@molecules/SearchMenu'
 import { Button } from "@atoms/Button";
-import { userStore } from '@/store'
+import { userStore, tokenStore } from '@/store'
 
-export const Header = (props) => {
-  const user = userStore.getState()
-  const { setUser } = useUser();
+export const Header = () => {
+  const user = useStore(userStore)
+  const token = useStore(tokenStore)
   const [showUserMenu, setUserMenu] = useState(false)
 
   const toggleShowingUserMenu = () => {
@@ -25,12 +24,12 @@ export const Header = (props) => {
       <Logo />
       <div className={s.right_side}>
         <SearchMenu />
-        {user ? (
+        {token ? (
           <div className={s.avatar_wrapper}
             onMouseEnter={toggleShowingUserMenu}
             onMouseLeave={toggleShowingUserMenu} >
             <img src={"//localhost:3000" + user.avatar.thumb.url} alt="" />
-            {showUserMenu && <NavigationProfileMenu user={user} setUser={setUser} />}
+            {showUserMenu && <NavigationProfileMenu user={user} />}
           </div>
         ) : (
           <NavLink to='/login' className={s.login}>вход</NavLink>
