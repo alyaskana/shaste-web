@@ -1,4 +1,4 @@
-import React from 'react';
+import { useStore } from "effector-react";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import CocktailPage from './pages/cocktail/CocktailPage';
@@ -11,21 +11,17 @@ import LoginPage from './pages/login/LoginPage';
 import { NewCocktailPage } from './pages/NewCocktail';
 import { Profile } from './pages/Profile'
 import { MyBar } from './pages/MyBar'
-import { userStore } from '@/store'
-
+import { tokenStore } from '@/store'
 
 function App() {
-  const user = userStore.getState();
+  const token = useStore(tokenStore);
 
-  // if (!user) {
-  //   return <Login setUser={setUser} />
-  // }
   return (
     <BrowserRouter>
       <Header />
       <Switch>
         <Route exact path='/login'>
-          {user ? <Redirect to="/cocktails" /> : <LoginPage />}
+          {token ? <Redirect to="/cocktails" /> : <LoginPage />}
         </Route>
         <Route exact path='/feed'>
           <FeedPage />

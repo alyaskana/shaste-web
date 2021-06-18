@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { useStore } from "effector-react";
 import s from './MyBar.module.scss'
 import Select from 'react-select';
 import { get, post } from '@api/apiFetcher'
@@ -8,7 +9,7 @@ import { userStore } from '@/store'
 export const MyBar = () => {
   const userData = useContext(UserContext)
 
-  const user = userStore.getState();
+  const user = useStore(userStore);
 
   const [ingredientsOptions, setIngredientsOptions] = useState([])
 
