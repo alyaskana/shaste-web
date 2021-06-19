@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
-import * as axios from "axios";
 import { RecipeCard } from "@molecules/RecipeCard";
 import s from './CocktailsPage.module.scss'
 import Masonry from "react-masonry-css";
+import { get } from "@api/apiFetcher";
 
 const CocktailsPage = () => {
   const [cocktails, setCocktails] = useState([])
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/cocktails`).then(response => {
+    get(`cocktails`).then(response => {
       setCocktails(response.data.cocktails)
     })
   }, []);

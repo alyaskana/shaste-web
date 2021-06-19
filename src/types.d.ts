@@ -18,8 +18,8 @@ export type User = {
     url: string
   },
   ingredients: Ingredient[],
-  followers: { id: string }[],
-  followings: { id: string }[],
+  followers: { id: number }[],
+  followings: { id: number }[],
   cocktails: { id: string }[],
   tasted: { id: string }[],
 }

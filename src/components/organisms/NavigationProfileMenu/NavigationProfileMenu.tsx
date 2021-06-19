@@ -14,7 +14,7 @@ export const NavigationProfileMenu = ({ user }) => {
   return (
     <div className={s.user_menu_wrapper}>
       <div className={s.user_menu}>
-        <NavLink to='/profile'>
+        <NavLink to={`/${user.login}`}>
           <div className={s.header}>
             <div className={s.avatar_wrapper}>
               <img src={"//localhost:3000" + user.avatar.thumb.url} alt="" />

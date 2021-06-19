@@ -26,9 +26,6 @@ function App() {
         <Route exact path='/feed'>
           <FeedPage />
         </Route>
-        <Route exact path='/profile'>
-          <Profile />
-        </Route>
         <Route exact path='/profile/mybar'>
           <MyBar />
         </Route>
@@ -42,6 +39,7 @@ function App() {
           <NewCocktailPage />
         </Route>
         <Route exact path='/cocktails/:id' render={(props) => <CocktailPage {...props} />} />
+        <Route exact path='/:login' render={(props) => <Profile {...props} />} />
       </Switch>
       <Footer />
     </BrowserRouter>

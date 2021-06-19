@@ -1,20 +1,64 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import s from "./Profile.module.scss"
 import { useStore } from "effector-react";
 import { userStore } from '../../store'
 import cn from 'classnames'
 import { CounterProfile } from "@components/atoms/CounterProfile";
 import IconLink from '@icons/icon_link.svg';
-import { Link } from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
+import { get, post } from "@api/apiFetcher";
+import { User } from '../../types'
+
+const initialUser = {
+  id: 0,
+  login: '',
+  user_name: '',
+  description: '',
+  link: '',
+  updated_at: '',
+  created_at: '',
+  avatar: {
+    thumb: {
+      url: ''
+    },
+    url: ''
+  },
+  ingredients: [],
+  followers: [],
+  followings: [],
+  cocktails: [],
+  tasted: [],
+}
 
 enum ContentTabTypes {
   Posts = 'posts',
   Recipes = 'recipes'
 }
 
-export const Profile = () => {
-  const user = useStore(userStore)
+export const Profile = (props) => {
+  const userLogin = props.match.params.login
+  const currentUser = useStore(userStore)
   const [contentTab, setContentTab] = useState('posts')
+  const [user, setUser] = useState(initialUser as User)
+  const [userIsFollowed, setUserIsFollowed] = useState(false)
+
+  useEffect(() => {
+    get(`users/${userLogin}`).then(response => {
+      setUser(response.data as User)
+    })
+  }, [userLogin, userIsFollowed])
+
+  useEffect(() => {
+    setUserIsFollowed(user.followers.some((follower) => follower.id === currentUser.id))
+  }, [user.followers, currentUser.id])
+
+  const handleFollow = () => {
+    if (userIsFollowed) {
+      post('users/unfollow', { id: user.id }).then(() => setUserIsFollowed(false))
+    } else {
+      post('users/follow', { id: user.id }).then(() => setUserIsFollowed(true))
+    }
+  }
 
   return (
     <div className={s.wrapper}>
@@ -38,6 +82,11 @@ export const Profile = () => {
         <div className={s.login}>
           @{user.login}
         </div>
+        {user.id !== currentUser.id ? (
+          <div className={cn(s.btn, { [s.isActive]: !userIsFollowed })} onClick={() => { handleFollow() }}>
+            {userIsFollowed ? 'Отписаться' : 'Подписаться'}
+          </div>
+        ) : (<></>)}
         <div className={s.description}>
           {user.description}
         </div>
