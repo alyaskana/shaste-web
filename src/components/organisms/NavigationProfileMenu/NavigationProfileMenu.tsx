@@ -1,8 +1,6 @@
-import React from 'react';
 import { NavLink } from "react-router-dom"
 import s from './NavigationProfileMenu.module.scss'
-import { tokenStore, userStore } from '@/store'
-import { setToken, setUser } from '@/event'
+import { setToken, setUser } from '../../../models/users'
 
 export const NavigationProfileMenu = ({ user }) => {
   const handleLogout = () => {
@@ -39,6 +37,3 @@ export const NavigationProfileMenu = ({ user }) => {
     </div>
   );
 };
-
-(tokenStore as any).on(setToken, (_state: any, token: any) => token);
-(userStore as any).on(setUser, (_state: any, user: any) => user);

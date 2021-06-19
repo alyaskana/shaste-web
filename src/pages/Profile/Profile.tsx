@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import s from "./Profile.module.scss"
 import { useStore } from "effector-react";
-import { userStore } from '../../store'
 import cn from 'classnames'
 import { CounterProfile } from "@components/atoms/CounterProfile";
 import IconLink from '@icons/icon_link.svg';
-import { NavLink, Link } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { get, post } from "@api/apiFetcher";
-import { User } from '../../types'
+import { $currentUser } from "../../models/users";
+import { User } from "../../models/users/types";
 
 const initialUser = {
   id: 0,
@@ -37,7 +37,7 @@ enum ContentTabTypes {
 
 export const Profile = (props) => {
   const userLogin = props.match.params.login
-  const currentUser = useStore(userStore)
+  const currentUser = useStore($currentUser)
   const [contentTab, setContentTab] = useState('posts')
   const [user, setUser] = useState(initialUser as User)
   const [userIsFollowed, setUserIsFollowed] = useState(false)

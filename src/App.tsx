@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
@@ -11,10 +12,18 @@ import LoginPage from './pages/login/LoginPage';
 import { NewCocktailPage } from './pages/NewCocktail';
 import { Profile } from './pages/Profile'
 import { MyBar } from './pages/MyBar'
-import { tokenStore } from '@/store'
+import { $token, $currentUser, fetchCurrentUserFx } from './models/users'
+import './models/init'
 
 function App() {
-  const token = useStore(tokenStore);
+  const token = useStore($token);
+  const currentUser = useStore($currentUser);
+
+  useEffect(() => {
+    fetchCurrentUserFx({})
+  }, [])
+
+  if (Object.keys(currentUser).length === 0) { return null }
 
   return (
     <BrowserRouter>

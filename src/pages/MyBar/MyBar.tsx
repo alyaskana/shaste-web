@@ -1,15 +1,12 @@
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useStore } from "effector-react";
 import s from './MyBar.module.scss'
 import Select from 'react-select';
 import { get, post } from '@api/apiFetcher'
-import UserContext from '@context/userContext'
-import { userStore } from '@/store'
+import { $currentUser } from '../../models/users'
 
 export const MyBar = () => {
-  const userData = useContext(UserContext)
-
-  const user = useStore(userStore);
+  const user = useStore($currentUser);
 
   const [ingredientsOptions, setIngredientsOptions] = useState([])
 
@@ -31,10 +28,10 @@ export const MyBar = () => {
           return 0;
         }))
     })
-  }, [user.ingredients, userData]);
+  }, [user.ingredients]);
 
   const handleAddIngredient = (selectedItem) => {
-    post('profile/ingredients', { id: selectedItem.value }, { "Content-Type": "application/json" }).then((response) => {
+    post('profile/ingredients', { id: selectedItem.value }).then((response) => {
       user.ingredients = response.data.ingredients
     })
   }
@@ -54,7 +51,10 @@ export const MyBar = () => {
       />
       <div className={s.user_ingredients}>
         {user.ingredients.map(i => (
-          <div className={s.user_ingredient}>{i.name}</div>
+          <div className={s.user_ingredient}>
+            {i.name}
+            <span>X</span>
+          </div>
         ))}
       </div>
     </div>
