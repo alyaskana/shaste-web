@@ -1,28 +1,33 @@
 import { useState, useEffect } from 'react';
 import s from './NewCocktailPage.module.scss'
-import { get } from '@api/apiFetcher'
+import { tagsFetcher } from '../../api/tags'
+import { ingredientsFetcher } from '../../api/ingredients'
+import { Tag } from '../../types'
 import { TitleSecondary, Font } from '@atoms/TitleSecondary'
-import { TCategory } from '@organisms/Categories'
 import { NewCocktailForm } from '@organisms/NewCocktailForm';
 
-const tags = [] as TCategory[]
+type ingrediensOption = {
+  label: string,
+  value: string
+}
 
 export const NewCocktailPage = () => {
-  const [categories, setCategories] = useState(tags)
+  const [categories, setCategories] = useState<Tag[]>([])
   useEffect(() => {
-    get(`tags`).then(response => {
+    tagsFetcher.getAll().then(response => {
       setCategories(response.data.tags)
     })
   }, []);
 
-  const [ingrediensOptions, setIngrediensOptions] = useState([])
+  const [ingrediensOptions, setIngrediensOptions] = useState<ingrediensOption[]>([])
 
   const updateIngrediensOptions = (text: string) => {
     if (text.length < 3) {
       return setIngrediensOptions([])
     }
-    get(`ingredients?search=${text}`).then(response => {
-      const options = response.data.ingredients.map(i => ({ label: i.name, value: i.id }))
+
+    ingredientsFetcher.search(text).then(response => {
+      const options = response.data.ingredients.map(i => ({ label: i.name, value: i.id.toString() }))
       setIngrediensOptions(options)
     })
   }

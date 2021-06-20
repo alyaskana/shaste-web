@@ -1,23 +1,21 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import s from './NewCocktailForm.module.scss'
 import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
 import * as Yup from 'yup';
 import { PhotoUploader } from '@components/molecules/PhotoUploader';
-import { Categories, TCategory } from '@organisms/Categories'
-import { post } from '@api/apiFetcher';
-import UserContext from '@context/userContext'
+import { Categories } from '@organisms/Categories'
 import { Ingredients, TIngredientOption } from '@molecules/Ingredients'
 import { useHistory } from 'react-router-dom';
-import { serialize } from 'object-to-formdata';
+import { cocktailsFetcher } from '../../../api/cocktails'
+import { Tag } from '../../../types'
 
 type TNewCocktailFormProps = {
-  categories: TCategory[],
+  categories: Tag[],
   ingredientsOptions: TIngredientOption[],
   updateIngrediensOptions: (text: string) => void
 }
 
 export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions, categories, updateIngrediensOptions }) => {
-  const { token } = useContext(UserContext)
   const history = useHistory()
   return (
     <Formik
@@ -52,8 +50,8 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
             ingredients: values.ingredients.map(i => ({ id: i.ingredient.value, amount: i.amount }))
           }
         }
-        post('cocktails', serialize(data), { "Content-Type": "multipart/form-data" }).then(response => {
-          console.log(response.data.id);
+
+        cocktailsFetcher.create(data).then(response => {
           history.push(`/cocktails/${response.data.id}`);
         })
         setSubmitting(false);

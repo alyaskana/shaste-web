@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react"
-import * as axios from "axios";
-import s from './CocktailPage.module.scss'
+import { useState, useEffect, FC } from "react"
+import { RouteComponentProps } from "react-router-dom";
+import { cocktailsFetcher } from '../../api/cocktails'
+import { Cocktail, CocktailIngredient } from "../../types";
 import { CardPhoto } from "@atoms/CardPhoto";
 import { TitleSecondary } from "@atoms/TitleSecondary";
 import { IngredientHave } from "@molecules/IngredientHave";
@@ -8,26 +9,33 @@ import { RecipeStep } from "@molecules/RecipeStep";
 import { RecipeHeader } from "@organisms/RecipeHeader";
 import { YoutubeEmbed } from "@atoms/YoutubeEmbed";
 
-const cocktailIngredients = (ingredients) => {
+import s from './CocktailPage.module.scss'
+
+const cocktailIngredients = (ingredients: CocktailIngredient[]) => {
   return ingredients.map(ingredient => {
     return <IngredientHave ingredient={ingredient} />
   })
 }
 
-const cocktailDirections = (direction) => {
-  return direction.map((direction, index) => {
+const cocktailDirections = (directions: string[]) => {
+  return directions.map((direction, index) => {
     return <RecipeStep step={index + 1} text={direction} />
   })
 }
 
-const CocktailPage = (props) => {
-  const cocktailId = props.match.params.id
-  const [cocktail, setCocktail] = useState(null)
+type Params = {
+  id: string
+}
+
+const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
+  const cocktailId = match.params.id
+  const [cocktail, setCocktail] = useState<Cocktail>(null)
+
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/cocktails/${cocktailId}`).then(response => {
+    cocktailsFetcher.getById(cocktailId).then(response => {
       setCocktail(response.data)
     })
-  }, []);
+  }, [cocktailId]);
 
   if (!cocktail) {
     return <></>

@@ -1,4 +1,4 @@
-import { User } from './types'
+import { User, Ingredient } from '../../types'
 import { createStore, createEffect, createEvent, createDomain } from "effector";
 import { persist } from 'effector-storage/local'
 
@@ -10,5 +10,6 @@ export const $currentUser = createStore<User>({} as User);
 export const $token = localStorage.createStore<string>(null, { name: 'token' });
 
 export const fetchCurrentUserFx = createEffect()
-export const setUser = createEvent();
+export const setCurrentUser = createEvent();
+export const setCurrentUserIngredients = createEvent<Ingredient[]>();
 export const setToken = createEvent();

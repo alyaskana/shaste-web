@@ -2,16 +2,22 @@ import { useEffect, useState } from 'react';
 import { useStore } from "effector-react";
 import s from './MyBar.module.scss'
 import Select from 'react-select';
-import { get, post } from '@api/apiFetcher'
-import { $currentUser } from '../../models/users'
+import { ingredientsFetcher } from "../../api/ingredients";
+import { usersFetcher } from "../../api/users";
+import { $currentUser, setCurrentUserIngredients } from '../../models/users'
+
+type IngredientsOption = {
+  label: string,
+  value: string
+}
 
 export const MyBar = () => {
   const user = useStore($currentUser);
 
-  const [ingredientsOptions, setIngredientsOptions] = useState([])
+  const [ingredientsOptions, setIngredientsOptions] = useState<IngredientsOption[]>([])
 
   useEffect(() => {
-    get(`ingredients`).then(response => {
+    ingredientsFetcher.getAll().then(response => {
       setIngredientsOptions(response.data.ingredients
         .filter(x => !user.ingredients.map(i => i.id).includes(x.id))
         .map(i => ({
@@ -31,8 +37,8 @@ export const MyBar = () => {
   }, [user.ingredients]);
 
   const handleAddIngredient = (selectedItem) => {
-    post('profile/ingredients', { id: selectedItem.value }).then((response) => {
-      user.ingredients = response.data.ingredients
+    usersFetcher.addIngredientToMyBar(selectedItem.value).then((response) => {
+      setCurrentUserIngredients(response.data.ingredients)
     })
   }
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { setToken, setUser } from '../../models/users';
+import { setToken, setCurrentUser } from '../../models/users';
 import s from './Login.module.scss'
 
 async function loginUser(credentials) {
@@ -23,7 +23,7 @@ const LoginPage = () => {
         password
       }
     });
-    setUser(userData.user);
+    setCurrentUser(userData.user);
     setToken(userData.token)
   }
 

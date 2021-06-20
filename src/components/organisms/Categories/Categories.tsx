@@ -1,19 +1,9 @@
 import { FC } from 'react';
 import { Selector } from './Selector'
-
-enum TagType {
-  taste = 'taste',
-  goal = 'goal'
-}
-
-export type TCategory = {
-  id: number
-  name: string
-  tag_type: TagType
-}
+import { Tag, TagType } from '../../../types'
 
 type TCategoriesProps = {
-  categories: TCategory[],
+  categories: Tag[],
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
 }
 

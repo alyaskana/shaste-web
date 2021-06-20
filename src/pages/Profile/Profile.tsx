@@ -5,11 +5,11 @@ import cn from 'classnames'
 import { CounterProfile } from "@components/atoms/CounterProfile";
 import IconLink from '@icons/icon_link.svg';
 import { Link } from "react-router-dom"
-import { get, post } from "@api/apiFetcher";
 import { $currentUser } from "../../models/users";
-import { User } from "../../models/users/types";
+import { User } from "../../types";
+import { usersFetcher } from "../../api/users"
 
-const initialUser = {
+const initialUser: User = {
   id: 0,
   login: '',
   user_name: '',
@@ -39,12 +39,12 @@ export const Profile = (props) => {
   const userLogin = props.match.params.login
   const currentUser = useStore($currentUser)
   const [contentTab, setContentTab] = useState('posts')
-  const [user, setUser] = useState(initialUser as User)
+  const [user, setUser] = useState(initialUser)
   const [userIsFollowed, setUserIsFollowed] = useState(false)
 
   useEffect(() => {
-    get(`users/${userLogin}`).then(response => {
-      setUser(response.data as User)
+    usersFetcher.getByLogin(userLogin).then(response => {
+      setUser(response.data)
     })
   }, [userLogin, userIsFollowed])
 
@@ -54,9 +54,9 @@ export const Profile = (props) => {
 
   const handleFollow = () => {
     if (userIsFollowed) {
-      post('users/unfollow', { id: user.id }).then(() => setUserIsFollowed(false))
+      usersFetcher.unfollow(user.id).then(() => setUserIsFollowed(false))
     } else {
-      post('users/follow', { id: user.id }).then(() => setUserIsFollowed(true))
+      usersFetcher.follow(user.id).then(() => setUserIsFollowed(true))
     }
   }
 

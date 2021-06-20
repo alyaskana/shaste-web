@@ -3,12 +3,13 @@ import { NavLink } from "react-router-dom"
 import { RecipeCard } from "@molecules/RecipeCard";
 import s from './CocktailsPage.module.scss'
 import Masonry from "react-masonry-css";
-import { get } from "@api/apiFetcher";
+import { cocktailsFetcher } from "../../api/cocktails";
+import { Cocktail } from "../../types";
 
 const CocktailsPage = () => {
-  const [cocktails, setCocktails] = useState([])
+  const [cocktails, setCocktails] = useState<Cocktail[]>([])
   useEffect(() => {
-    get(`cocktails`).then(response => {
+    cocktailsFetcher.getAll().then(response => {
       setCocktails(response.data.cocktails)
     })
   }, []);

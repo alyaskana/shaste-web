@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom"
 import s from './NavigationProfileMenu.module.scss'
-import { setToken, setUser } from '../../../models/users'
+import { setToken, setCurrentUser } from '../../../models/users'
 
 export const NavigationProfileMenu = ({ user }) => {
   const handleLogout = () => {
     setToken(null)
-    setUser(null)
+    setCurrentUser(null)
     window.location.reload()
   }
 
