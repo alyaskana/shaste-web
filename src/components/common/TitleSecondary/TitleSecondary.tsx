@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import s from './TitleSecondary.module.scss'
 import cn from 'classnames'
 

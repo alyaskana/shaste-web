@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import s from './Ingredients.module.scss'
 import { Field, FieldArray } from 'formik'
 import Select from 'react-select'
