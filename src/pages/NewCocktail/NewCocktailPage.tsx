@@ -3,8 +3,8 @@ import s from './NewCocktailPage.module.scss'
 import { tagsFetcher } from '../../api/tags'
 import { ingredientsFetcher } from '../../api/ingredients'
 import { Tag } from '../../types'
-import { TitleSecondary } from '@atoms/TitleSecondary'
-import { NewCocktailForm } from '@organisms/NewCocktailForm'
+import { TitleSecondary } from '@components/common/TitleSecondary'
+import { NewCocktailForm } from '@components/cocktails/NewCocktailForm'
 
 type ingrediensOption = {
   label: string

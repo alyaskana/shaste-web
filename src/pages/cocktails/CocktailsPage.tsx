@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import { RecipeCard } from '@molecules/RecipeCard'
+import { RecipeCard } from '@components/cocktails/RecipeCard'
 import s from './CocktailsPage.module.scss'
 import Masonry from 'react-masonry-css'
 import { cocktailsFetcher } from '../../api/cocktails'

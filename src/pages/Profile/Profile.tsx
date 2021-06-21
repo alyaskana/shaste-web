@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
-import s from './Profile.module.scss'
+import { Link } from 'react-router-dom'
 import { useStore } from 'effector-react'
 import cn from 'classnames'
-import { CounterProfile } from '@components/atoms/CounterProfile'
-import IconLink from '@icons/icon_link.svg'
-import { Link } from 'react-router-dom'
+
+import { CounterProfile } from '@components/profile/CounterProfile'
+
 import { $currentUser } from '../../models/users'
-import { User } from '../../types'
 import { usersFetcher } from '../../api/users'
+import { User } from '../../types'
+
+import IconLink from '@icons/icon_link.svg'
+import s from './Profile.module.scss'
 
 const initialUser: User = {
   id: 0,
