@@ -59,10 +59,35 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   }
 
   const handleFavorite = () => {
-    true
+    const isFavorited = currentUser.favorites.some((favorite) => favorite.id === cocktail.id)
+
+    if (isFavorited) {
+      cocktailsFetcher.unfavorite(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserFavorites(currentUser.favorites.filter((favorite) => favorite.id != cocktail.id))
+      })
+    } else {
+      cocktailsFetcher.favorite(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserFavorites([...currentUser.favorites, { id: cocktail.id }])
+      })
+    }
   }
+
   const handleTaste = () => {
-    true
+    const isTasted = currentUser.tasted.some((taste) => taste.id === cocktail.id)
+
+    if (isTasted) {
+      cocktailsFetcher.untaste(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserTasted(currentUser.tasted.filter((taste) => taste.id != cocktail.id))
+      })
+    } else {
+      cocktailsFetcher.taste(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserTasted([...currentUser.tasted, { id: cocktail.id }])
+      })
+    }
   }
 
   if (!cocktail) {

@@ -39,5 +39,12 @@ class CocktailsFetcher extends API {
     return super.post<R>({ path: `cocktails/unfavorite`, params: { id: cocktailId } })
   }
 
+  taste<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/taste`, params: { id: cocktailId } })
+  }
+
+  untaste<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/untaste`, params: { id: cocktailId } })
+  }
 }
 export const cocktailsFetcher = new CocktailsFetcher()

@@ -8,6 +8,7 @@ import {
   setCurrentUserIngredients,
   setCurrentUserLikes,
   setCurrentUserFavorites,
+  setCurrentUserTasted,
 } from './index'
 import { User, Ingredient, IdsListItem } from '@types'
 import { usersFetcher } from '../../api/users'
@@ -24,4 +25,6 @@ $currentUser.on(setCurrentUserIngredients, (state, ingredients: Ingredient[]) =>
 }))
 $currentUser.on(setCurrentUserLikes, (state, likes: IdsListItem[]) => ({ ...state, likes: likes }))
 $currentUser.on(setCurrentUserFavorites, (state, favorites: IdsListItem[]) => ({ ...state, favorites: favorites }))
+$currentUser.on(setCurrentUserTasted, (state, tasted: IdsListItem[]) => ({ ...state, tasted: tasted }))
+
 $token.on(setToken, (_state, token) => token)
