@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import Select from 'react-select';
+import React, { FC } from 'react'
+import Select from 'react-select'
 
 type TOption = {
-  label: string,
+  label: string
   value: string
 }
 
 type TSelectorProps = {
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
-  name: string,
-  options: TOption[],
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
+  name: string
+  options: TOption[]
   placeholder: string
 }
 
@@ -24,20 +24,20 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
       isMulti
       options={options}
       className="basic-multi-select"
-      classNamePrefix='select'
+      classNamePrefix="select"
       hideSelectedOptions={false}
       onChange={handleOnChange}
       placeholder={placeholder}
       styles={{
-        control: base => ({
+        control: (base) => ({
           ...base,
           '&:hover': { borderColor: '#101010' },
           border: '1px solid #101010',
           boxShadow: 'none',
           cursor: 'pointer',
-          borderRadius: '0'
+          borderRadius: '0',
         }),
-        multiValue: base => ({
+        multiValue: (base) => ({
           ...base,
           border: '1px solid black',
           borderRadius: 0,
@@ -50,15 +50,9 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
         option: (base, { isDisabled, isFocused, isSelected }) => ({
           ...base,
           cursor: 'pointer',
-          backgroundColor: isDisabled
-            ? null
-            : isSelected
-              ? 'gray'
-              : isFocused
-                ? 'lightgray'
-                : null,
-          height: "100%",
-          color: "#101010",
+          backgroundColor: isDisabled ? null : isSelected ? 'gray' : isFocused ? 'lightgray' : null,
+          height: '100%',
+          color: '#101010',
           fontSize: '20px',
           lineHeight: '28px',
           fontFamily: 'Akzidenz-Grotesk Pro',
@@ -67,12 +61,12 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
             backgroundColor: 'gray',
           },
         }),
-        placeholder: base => ({
+        placeholder: (base) => ({
           ...base,
           fontSize: '20px',
           fontFamily: 'Akzidenz-Grotesk Pro',
         }),
-        multiValueRemove: styles => ({
+        multiValueRemove: (styles) => ({
           ...styles,
           color: 'rgb(0,0,0,0.5)',
           cursor: 'pointer',
@@ -80,12 +74,12 @@ export const Selector: FC<TSelectorProps> = ({ setFieldValue, name, options, pla
             color: '#101010',
           },
         }),
-        valueContainer: base => ({
+        valueContainer: (base) => ({
           ...base,
           padding: '12px 22px',
           lineHeight: 'normal',
-        })
+        }),
       }}
     />
-  );
-};
+  )
+}

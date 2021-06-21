@@ -1,10 +1,5 @@
-import React from 'react';
-import s from './Avatar.module.scss'
+import React from 'react'
 
 export const Avatar = () => {
-  return (
-    <div>
-
-    </div>
-  );
-};
+  return <div></div>
+}

@@ -1,23 +1,23 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import s from './NewCocktailPage.module.scss'
 import { tagsFetcher } from '../../api/tags'
 import { ingredientsFetcher } from '../../api/ingredients'
 import { Tag } from '../../types'
-import { TitleSecondary, Font } from '@atoms/TitleSecondary'
-import { NewCocktailForm } from '@organisms/NewCocktailForm';
+import { TitleSecondary } from '@atoms/TitleSecondary'
+import { NewCocktailForm } from '@organisms/NewCocktailForm'
 
 type ingrediensOption = {
-  label: string,
+  label: string
   value: string
 }
 
 export const NewCocktailPage = () => {
   const [categories, setCategories] = useState<Tag[]>([])
   useEffect(() => {
-    tagsFetcher.getAll().then(response => {
+    tagsFetcher.getAll().then((response) => {
       setCategories(response.data.tags)
     })
-  }, []);
+  }, [])
 
   const [ingrediensOptions, setIngrediensOptions] = useState<ingrediensOption[]>([])
 
@@ -26,8 +26,8 @@ export const NewCocktailPage = () => {
       return setIngrediensOptions([])
     }
 
-    ingredientsFetcher.search(text).then(response => {
-      const options = response.data.ingredients.map(i => ({ label: i.name, value: i.id.toString() }))
+    ingredientsFetcher.search(text).then((response) => {
+      const options = response.data.ingredients.map((i) => ({ label: i.name, value: i.id.toString() }))
       setIngrediensOptions(options)
     })
   }
@@ -35,7 +35,7 @@ export const NewCocktailPage = () => {
   return (
     <div className={s.page_wrapper}>
       <div className={s.title_wrapper}>
-        <TitleSecondary title='СОЗДАЕМ РЕЦЕПТ' font={Font.SK_Zweig} />
+        <TitleSecondary title="СОЗДАЕМ РЕЦЕПТ" />
       </div>
       <NewCocktailForm
         ingredientsOptions={ingrediensOptions}
@@ -43,5 +43,5 @@ export const NewCocktailPage = () => {
         updateIngrediensOptions={updateIngrediensOptions}
       />
     </div>
-  );
-};
+  )
+}

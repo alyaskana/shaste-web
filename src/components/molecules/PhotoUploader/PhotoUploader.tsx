@@ -1,7 +1,7 @@
-import React, { useState, FC } from 'react';
+import React, { useState, FC } from 'react'
 import s from './PhotoUploader.module.scss'
-import { ReactComponent as IconPhoto } from "@icons/IconPhoto.svg";
-import { CardPhoto } from "@atoms/CardPhoto";
+import { ReactComponent as IconPhoto } from '@icons/IconPhoto.svg'
+import { CardPhoto } from '@atoms/CardPhoto'
 
 type TPhotoUploaderProps = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
@@ -13,17 +13,17 @@ export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
   const [imgPrewiew, setImgPrewiew] = useState('')
 
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let reader = new FileReader();
+    const reader = new FileReader()
     if (!event.target.files) {
       return
     }
-    let file = event.target.files[0];
+    const file = event.target.files[0]
 
     setFieldValue(name, file)
 
     reader.onloadend = () => {
-      const url = typeof (reader.result) === 'string' ? reader.result : ''
-      setImgPrewiew(url);
+      const url = typeof reader.result === 'string' ? reader.result : ''
+      setImgPrewiew(url)
     }
 
     reader.readAsDataURL(file)
@@ -32,13 +32,16 @@ export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
     <>
       <div className={s.photo_uploader}>
         <IconPhoto />
-        <label className={s.label} htmlFor={name}>выберите фото</label>
-        <input className={s.input} name={name} type='file' id={name} onChange={handleUpload} />
+        <label className={s.label} htmlFor={name}>
+          выберите фото
+        </label>
+        <input className={s.input} name={name} type="file" id={name} onChange={handleUpload} />
       </div>
-      {imgPrewiew &&
+      {imgPrewiew && (
         <div className={s.prewiew}>
           <CardPhoto src={imgPrewiew} />
-        </div>}
+        </div>
+      )}
     </>
   )
 }

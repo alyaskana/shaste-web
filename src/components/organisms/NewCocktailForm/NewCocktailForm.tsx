@@ -1,21 +1,25 @@
-import { FC } from 'react';
+import { FC } from 'react'
 import s from './NewCocktailForm.module.scss'
-import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik';
-import * as Yup from 'yup';
-import { PhotoUploader } from '@components/molecules/PhotoUploader';
+import { Formik, Form, Field, ErrorMessage, FieldArray } from 'formik'
+import * as Yup from 'yup'
+import { PhotoUploader } from '@components/molecules/PhotoUploader'
 import { Categories } from '@organisms/Categories'
 import { Ingredients, TIngredientOption } from '@molecules/Ingredients'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 import { cocktailsFetcher } from '../../../api/cocktails'
 import { Tag } from '../../../types'
 
 type TNewCocktailFormProps = {
-  categories: Tag[],
-  ingredientsOptions: TIngredientOption[],
+  categories: Tag[]
+  ingredientsOptions: TIngredientOption[]
   updateIngrediensOptions: (text: string) => void
 }
 
-export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions, categories, updateIngrediensOptions }) => {
+export const NewCocktailForm: FC<TNewCocktailFormProps> = ({
+  ingredientsOptions,
+  categories,
+  updateIngrediensOptions,
+}) => {
   const history = useHistory()
   return (
     <Formik
@@ -26,64 +30,54 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
           {
             ingredient: {
               label: '',
-              value: ''
+              value: '',
             },
-            amount: ''
+            amount: '',
           },
         ],
-        steps: ['',],
+        steps: [''],
         photo: null,
         youtube: '',
         tags: { goals: [], tastes: [] },
       }}
       validationSchema={Yup.object({
-        title: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле')
+        title: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле'),
       })}
       onSubmit={(values, { setSubmitting }) => {
         const data = {
           cocktail: {
             ...values,
-            tags: [
-              ...values.tags.goals.map(goal => goal.value),
-              ...values.tags.tastes.map(taste => taste.value)
-            ],
-            ingredients: values.ingredients.map(i => ({ id: i.ingredient.value, amount: i.amount }))
-          }
+            tags: [...values.tags.goals.map((goal) => goal.value), ...values.tags.tastes.map((taste) => taste.value)],
+            ingredients: values.ingredients.map((i) => ({ id: i.ingredient.value, amount: i.amount })),
+          },
         }
 
-        cocktailsFetcher.create(data).then(response => {
-          history.push(`/cocktails/${response.data.id}`);
+        cocktailsFetcher.create(data).then((response) => {
+          history.push(`/cocktails/${response.data.id}`)
         })
-        setSubmitting(false);
+        setSubmitting(false)
       }}
     >
       {({ values, setFieldValue }) => (
         <Form className={s.form}>
           <fieldset>
             <label htmlFor="title">как называется ваш коктейль?</label>
-            <Field
-              name="title"
-              type="text"
-              placeholder='маргарита, текила санрайз, молочный пунш'
-            />
+            <Field name="title" type="text" placeholder="маргарита, текила санрайз, молочный пунш" />
             <ErrorMessage name="title" />
           </fieldset>
 
           <fieldset>
             <label htmlFor="description">небольшое описание</label>
-            <Field
-              name="description"
-              as='textarea'
-              placeholder='пару слов туда-сюда сделай'
-              className={s.textarea}
-            />
+            <Field name="description" as="textarea" placeholder="пару слов туда-сюда сделай" className={s.textarea} />
             <ErrorMessage name="description" />
           </fieldset>
 
           <fieldset>
             <div className={s.ingredients}>
               <label htmlFor="ingredients">какие нужны ингредиенты?</label>
-              <label htmlFor="ingredients">сколько?<span className={s.caption}>необязательно</span></label>
+              <label htmlFor="ingredients">
+                сколько?<span className={s.caption}>необязательно</span>
+              </label>
             </div>
             <Ingredients
               selectedIngredients={values.ingredients}
@@ -94,19 +88,22 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
           </fieldset>
 
           <fieldset>
-            <label htmlFor="steps">что нужно сделать?<span className={s.caption}>пошагово</span></label>
+            <label htmlFor="steps">
+              что нужно сделать?<span className={s.caption}>пошагово</span>
+            </label>
             <FieldArray
-              name='steps'
-              render={arrayHelpers => (
+              name="steps"
+              render={(arrayHelpers) => (
                 <div>
                   {values.steps.map((step, index) => (
                     <div key={index}>
                       <div className={s.step}>
                         <Field
                           name={`steps[${index}]`}
-                          as='textarea'
+                          as="textarea"
                           className={s.textarea}
-                          placeholder='что нужно сделать' />
+                          placeholder="что нужно сделать"
+                        />
                       </div>
                     </div>
                   ))}
@@ -125,7 +122,7 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
 
           <fieldset>
             <label htmlFor="youtube">у вас есть youtube видео?</label>
-            <Field name='youtube' />
+            <Field name="youtube" />
           </fieldset>
 
           <fieldset>
@@ -137,5 +134,5 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({ ingredientsOptions,
         </Form>
       )}
     </Formik>
-  );
-};
+  )
+}

@@ -1,6 +1,6 @@
 export enum TagType {
   taste = 'taste',
-  goal = 'goal'
+  goal = 'goal',
 }
 
 export type Tag = {

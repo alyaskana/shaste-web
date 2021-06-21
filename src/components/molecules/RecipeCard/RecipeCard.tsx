@@ -1,6 +1,6 @@
-import React from 'react';
-import { CardPhoto } from '@atoms/CardPhoto';
-import { Ingredient } from '@atoms/Ingredient';
+import React from 'react'
+import { CardPhoto } from '@atoms/CardPhoto'
+import { Ingredient } from '@atoms/Ingredient'
 import s from './RecipeCard.module.scss'
 
 export const RecipeCard = ({ src, title, ingredients }) => {
@@ -12,12 +12,12 @@ export const RecipeCard = ({ src, title, ingredients }) => {
         <div className={s.ingredients_block}>
           <div className={s.subtitle}>если добавить/состав</div>
           <div className={s.ingredients_list}>
-            {ingredients.map(ingredient => (
-              <Ingredient ingredient={ingredient.name} />
+            {ingredients.map((ingredient) => (
+              <Ingredient key={ingredient.id} ingredient={ingredient.name} />
             ))}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

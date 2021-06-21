@@ -1,1 +1,1 @@
-export * from './RecipeHeader'
+export * from './RecipeInfo'

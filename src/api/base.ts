@@ -1,5 +1,5 @@
-import axios from "axios";
-import { $token } from '../models/users';
+import axios from 'axios'
+import { $token } from '../models/users'
 
 export const fetcher = axios.create({
   baseURL: 'http://localhost:3000/api/',
@@ -24,9 +24,9 @@ export class API {
     const token = $token.getState()
     return this.fetcher.get<R>(`${path}?${query}`, {
       headers: {
-        'Authorization': token,
-        ...headers
-      }
+        Authorization: token,
+        ...headers,
+      },
     })
   }
 
@@ -34,9 +34,9 @@ export class API {
     const token = $token.getState()
     return this.fetcher.post<R>(path, params, {
       headers: {
-        'Authorization': token,
-        ...headers
-      }
+        Authorization: token,
+        ...headers,
+      },
     })
   }
 }

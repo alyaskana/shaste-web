@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import s from './Button.module.scss'
 
 export const Button = ({ text, onClick }) => {
@@ -6,5 +6,5 @@ export const Button = ({ text, onClick }) => {
     <button onClick={onClick} className={s.btn}>
       {text}
     </button>
-  );
-};
+  )
+}

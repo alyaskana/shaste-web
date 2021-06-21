@@ -8,5 +8,8 @@ $currentUser.on(fetchCurrentUserFx.doneData as any, (_state, response: any) => {
 })
 
 $currentUser.on(setCurrentUser, (_state, user) => user)
-$currentUser.on(setCurrentUserIngredients, (state, ingredients: any) => ({ ...state, ingredients: ingredients } as User))
+$currentUser.on(
+  setCurrentUserIngredients,
+  (state, ingredients: any) => ({ ...state, ingredients: ingredients } as User),
+)
 $token.on(setToken, (_state, token) => token)

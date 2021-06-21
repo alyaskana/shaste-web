@@ -1,6 +1,6 @@
 export type Image = {
-  url: string,
+  url: string
   thumb: {
-    url: string,
+    url: string
   }
 }

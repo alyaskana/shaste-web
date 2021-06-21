@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState } from "react";
+import React from 'react'
+import { useState } from 'react'
 import s from './SearchMenu.module.scss'
 import icon_find from '@/assets/images/icons/a-icon-find.svg'
 
@@ -17,5 +17,5 @@ export const SearchMenu = () => {
         <img src={icon_find} alt="icon_find" className={s.icon} />
       </div>
     </div>
-  );
-};
+  )
+}

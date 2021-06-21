@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import s from "./Profile.module.scss"
-import { useStore } from "effector-react";
+import { useState, useEffect } from 'react'
+import s from './Profile.module.scss'
+import { useStore } from 'effector-react'
 import cn from 'classnames'
-import { CounterProfile } from "@components/atoms/CounterProfile";
-import IconLink from '@icons/icon_link.svg';
-import { Link } from "react-router-dom"
-import { $currentUser } from "../../models/users";
-import { User } from "../../types";
-import { usersFetcher } from "../../api/users"
+import { CounterProfile } from '@components/atoms/CounterProfile'
+import IconLink from '@icons/icon_link.svg'
+import { Link } from 'react-router-dom'
+import { $currentUser } from '../../models/users'
+import { User } from '../../types'
+import { usersFetcher } from '../../api/users'
 
 const initialUser: User = {
   id: 0,
@@ -19,9 +19,9 @@ const initialUser: User = {
   created_at: '',
   avatar: {
     thumb: {
-      url: ''
+      url: '',
     },
-    url: ''
+    url: '',
   },
   ingredients: [],
   followers: [],
@@ -32,7 +32,7 @@ const initialUser: User = {
 
 enum ContentTabTypes {
   Posts = 'posts',
-  Recipes = 'recipes'
+  Recipes = 'recipes',
 }
 
 export const Profile = (props) => {
@@ -43,7 +43,7 @@ export const Profile = (props) => {
   const [userIsFollowed, setUserIsFollowed] = useState(false)
 
   useEffect(() => {
-    usersFetcher.getByLogin(userLogin).then(response => {
+    usersFetcher.getByLogin(userLogin).then((response) => {
       setUser(response.data)
     })
   }, [userLogin, userIsFollowed])
@@ -65,60 +65,59 @@ export const Profile = (props) => {
       <div className={s.bio}>
         <div className={s.head}>
           <div className={cn(s.column, s.left)}>
-            <CounterProfile text='подписки' amount={user.followings.length} />
-            <CounterProfile text='коктейлей опробовано' amount={user.tasted.length} />
+            <CounterProfile text="подписки" amount={user.followings.length} />
+            <CounterProfile text="коктейлей опробовано" amount={user.tasted.length} />
           </div>
           <div className={s.avatar_wrapper}>
-            <img src={"//localhost:3000" + user.avatar.url} alt="" />
+            <img src={'//localhost:3000' + user.avatar.url} alt="" />
           </div>
           <div className={cn(s.column, s.right)}>
-            <CounterProfile text='подписчики' amount={user.followers.length} />
-            <CounterProfile text='рецептов создано' amount={user.cocktails.length} />
+            <CounterProfile text="подписчики" amount={user.followers.length} />
+            <CounterProfile text="рецептов создано" amount={user.cocktails.length} />
           </div>
         </div>
-        <div className={s.username}>
-          {user.user_name}
-        </div>
-        <div className={s.login}>
-          @{user.login}
-        </div>
+        <div className={s.username}>{user.user_name}</div>
+        <div className={s.login}>@{user.login}</div>
         {user.id !== currentUser.id ? (
-          <div className={cn(s.btn, { [s.isActive]: !userIsFollowed })} onClick={() => { handleFollow() }}>
+          <div
+            className={cn(s.btn, { [s.isActive]: !userIsFollowed })}
+            onClick={() => {
+              handleFollow()
+            }}
+          >
             {userIsFollowed ? 'Отписаться' : 'Подписаться'}
           </div>
-        ) : (<></>)}
-        <div className={s.description}>
-          {user.description}
-        </div>
+        ) : (
+          <></>
+        )}
+        <div className={s.description}>{user.description}</div>
         {user.link && (
           <>
             <Link to={user.link} className={s.link}>
-              <img src={IconLink} alt='' className={s.link_icon} />
+              <img src={IconLink} alt="" className={s.link_icon} />
               {user.link}
             </Link>
           </>
         )}
       </div>
       <div className={s.select_content_tab}>
-        <div className={cn(s.select_item, { [s.isActive]: contentTab === ContentTabTypes.Posts })} onClick={() => setContentTab(ContentTabTypes.Posts)}>
+        <div
+          className={cn(s.select_item, { [s.isActive]: contentTab === ContentTabTypes.Posts })}
+          onClick={() => setContentTab(ContentTabTypes.Posts)}
+        >
           все посты
         </div>
         <div className={s.separator} />
-        <div className={cn(s.select_item, { [s.isActive]: contentTab === ContentTabTypes.Recipes })} onClick={() => setContentTab(ContentTabTypes.Recipes)}>
+        <div
+          className={cn(s.select_item, { [s.isActive]: contentTab === ContentTabTypes.Recipes })}
+          onClick={() => setContentTab(ContentTabTypes.Recipes)}
+        >
           мои рецепты
         </div>
       </div>
       <div className={s.content_wrapper}>
-        {contentTab === ContentTabTypes.Posts ? (
-          <div>
-            here will be posts
-          </div>
-        ) : (
-          <div>
-            here will be recipes
-          </div>
-        )}
+        {contentTab === ContentTabTypes.Posts ? <div>here will be posts</div> : <div>here will be recipes</div>}
       </div>
-    </div >
-  );
-};
+    </div>
+  )
+}

@@ -1,28 +1,35 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 import s from './Ingredients.module.scss'
-import { Field, FieldArray } from 'formik';
-import Select from 'react-select';
+import { Field, FieldArray } from 'formik'
+import Select from 'react-select'
 import cn from 'classnames'
-import { debounce } from 'throttle-debounce';
+import { debounce } from 'throttle-debounce'
 
 export type TIngredientOption = {
-  label: string,
+  label: string
   value: string
 }
 
 type TIngredientsSelectorProps = {
-  options: TIngredientOption[],
-  className?: string,
-  placeholder: string,
-  name: string,
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
+  options: TIngredientOption[]
+  className?: string
+  placeholder: string
+  name: string
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
   updateIngrediensOptions: (text: string) => void
 }
 
-const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placeholder, name, className, setFieldValue, updateIngrediensOptions }) => {
+const IngredientsSelector: FC<TIngredientsSelectorProps> = ({
+  options,
+  placeholder,
+  name,
+  className,
+  setFieldValue,
+  updateIngrediensOptions,
+}) => {
   const debounceUpdateOptions = debounce(500, (inputValue: string) => {
     updateIngrediensOptions(inputValue)
-  });
+  })
 
   const handleInputChange = (inputValue: string) => {
     debounceUpdateOptions(inputValue)
@@ -42,23 +49,23 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
       name={name}
       className={cn(className)}
       styles={{
-        control: base => ({
+        control: (base) => ({
           ...base,
           '&:hover': { borderColor: '#101010' },
           border: '1px solid #101010',
           boxShadow: 'none',
           cursor: 'text',
-          borderRadius: '0'
+          borderRadius: '0',
         }),
-        indicatorsContainer: base => ({
+        indicatorsContainer: (base) => ({
           ...base,
           display: 'none',
         }),
-        indicatorSeparator: base => ({
+        indicatorSeparator: (base) => ({
           ...base,
           display: 'none',
         }),
-        input: base => ({
+        input: (base) => ({
           ...base,
           fontSize: '20px',
           fontFamily: 'Akzidenz-Grotesk Pro',
@@ -68,15 +75,9 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
         option: (base, { isDisabled, isFocused, isSelected }) => ({
           ...base,
           cursor: 'pointer',
-          backgroundColor: isDisabled
-            ? null
-            : isSelected
-              ? 'gray'
-              : isFocused
-                ? 'lightgray'
-                : null,
-          height: "100%",
-          color: "#101010",
+          backgroundColor: isDisabled ? null : isSelected ? 'gray' : isFocused ? 'lightgray' : null,
+          height: '100%',
+          color: '#101010',
           fontSize: '20px',
           lineHeight: '28px',
           fontFamily: 'Akzidenz-Grotesk Pro',
@@ -85,43 +86,48 @@ const IngredientsSelector: FC<TIngredientsSelectorProps> = ({ options, placehold
             backgroundColor: 'gray',
           },
         }),
-        placeholder: base => ({
+        placeholder: (base) => ({
           ...base,
           fontSize: '20px',
           fontFamily: 'Akzidenz-Grotesk Pro',
         }),
-        singleValue: base => ({
+        singleValue: (base) => ({
           ...base,
           fontSize: '20px',
           fontFamily: 'Akzidenz-Grotesk Pro',
         }),
-        valueContainer: base => ({
+        valueContainer: (base) => ({
           ...base,
           padding: '12px 22px',
           lineHeight: 'normal',
-        })
+        }),
       }}
     />
   )
 }
 
 export type TIngredient = {
-  ingredient: TIngredientOption,
+  ingredient: TIngredientOption
   amount: string
 }
 
 type TIngredientsProps = {
-  ingredientsOptions: TIngredientOption[],
-  selectedIngredients: TIngredient[],
-  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void,
+  ingredientsOptions: TIngredientOption[]
+  selectedIngredients: TIngredient[]
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
   updateIngrediensOptions: (text: string) => void
 }
 
-export const Ingredients: FC<TIngredientsProps> = ({ ingredientsOptions, selectedIngredients, setFieldValue, updateIngrediensOptions }) => {
+export const Ingredients: FC<TIngredientsProps> = ({
+  ingredientsOptions,
+  selectedIngredients,
+  setFieldValue,
+  updateIngrediensOptions,
+}) => {
   return (
     <FieldArray
       name="ingredients"
-      render={arrayHelpers => (
+      render={(arrayHelpers) => (
         <div>
           {selectedIngredients.map((_ingredient, index) => (
             <div key={index}>
@@ -131,11 +137,11 @@ export const Ingredients: FC<TIngredientsProps> = ({ ingredientsOptions, selecte
                   className={s.ingredient_name}
                   options={ingredientsOptions}
                   name={`ingredients[${index}].ingredient`}
-                  placeholder='клубника'
+                  placeholder="клубника"
                   setFieldValue={setFieldValue}
                   updateIngrediensOptions={updateIngrediensOptions}
                 />
-                <Field className={s.ingredient_count} name={`ingredients.${index}.amount`} placeholder='25 мл' />
+                <Field className={s.ingredient_count} name={`ingredients.${index}.amount`} placeholder="25 мл" />
               </div>
               {/* <div className={s.plus_btn} onClick={() => arrayHelpers.remove(index)}>
                         -
@@ -148,5 +154,5 @@ export const Ingredients: FC<TIngredientsProps> = ({ ingredientsOptions, selecte
         </div>
       )}
     />
-  );
-};
+  )
+}

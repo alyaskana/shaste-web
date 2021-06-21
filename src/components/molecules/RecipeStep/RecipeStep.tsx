@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import s from './RecipeStep.module.scss'
 
 export const RecipeStep = ({ step, text }) => {
@@ -7,5 +7,5 @@ export const RecipeStep = ({ step, text }) => {
       <div className={s.step}>{step}.</div>
       <div className={s.text}>{text}</div>
     </div>
-  );
-};
+  )
+}

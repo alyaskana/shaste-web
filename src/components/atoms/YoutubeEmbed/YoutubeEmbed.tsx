@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 import s from './YoutubeEmbed.module.scss'
 
 export const YoutubeEmbed = ({ embedId }) => (
@@ -14,8 +14,8 @@ export const YoutubeEmbed = ({ embedId }) => (
       title="Embedded youtube"
     />
   </div>
-);
+)
 
 YoutubeEmbed.propTypes = {
-  embedId: PropTypes.string.isRequired
-};
+  embedId: PropTypes.string.isRequired,
+}

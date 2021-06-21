@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import s from './ActionIcon.module.scss'
 
 export const Icon = ({ src, srcHover, srcActive, isActive }) => {
   const [currentSrc, setCurrentSrc] = useState(src)
-  console.log(isActive);
   if (isActive) {
     return (
-      <div className={s.icon_wrapper} >
+      <div className={s.icon_wrapper}>
         <img className={s.icon} src={srcActive} alt="taste icon" />
       </div>
     )

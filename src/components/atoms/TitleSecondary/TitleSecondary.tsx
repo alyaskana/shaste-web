@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 import s from './TitleSecondary.module.scss'
 import cn from 'classnames'
 
@@ -10,13 +10,8 @@ export enum Font {
 type TTitleSecondaryProps = {
   title: string
   className?: string
-  font: string
 }
 
-export const TitleSecondary: FC<TTitleSecondaryProps> = ({ title, className, font }) => {
-  return (
-    <div className={cn(s.title, className, s[font])}>
-      {title}
-    </div>
-  );
-};
+export const TitleSecondary: FC<TTitleSecondaryProps> = ({ title, className }) => {
+  return <div className={cn(s.title, className)}>{title}</div>
+}

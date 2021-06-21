@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import s from './Footer.module.scss'
 
 export const Footer = () => {
@@ -6,5 +6,5 @@ export const Footer = () => {
     <div className={s.footer}>
       <div>Footer</div>
     </div>
-  );
-};
+  )
+}
