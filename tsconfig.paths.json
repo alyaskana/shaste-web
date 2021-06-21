@@ -10,7 +10,9 @@
       "@hooks/*": ["hooks/*"],
       "@atoms/*": ["components/atoms/*"],
       "@molecules/*": ["components/molecules/*"],
-      "@organisms/*": ["components/organisms/*"]
+      "@organisms/*": ["components/organisms/*"],
+      "@types": ["types"],
+      "@models/*": ["models/*"]
     }
   }
 }
