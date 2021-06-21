@@ -7,9 +7,9 @@ import {
   fetchCurrentUserFx,
   setCurrentUserIngredients,
   setCurrentUserLikes,
-  LikedCocktails,
+  setCurrentUserFavorites,
 } from './index'
-import { User, Ingredient } from '@types'
+import { User, Ingredient, IdsListItem } from '@types'
 import { usersFetcher } from '../../api/users'
 
 fetchCurrentUserFx.use(async () => usersFetcher.getCurrentUser())
@@ -22,5 +22,6 @@ $currentUser.on(setCurrentUserIngredients, (state, ingredients: Ingredient[]) =>
   ...state,
   ingredients: ingredients,
 }))
-$currentUser.on(setCurrentUserLikes, (state, likes: LikedCocktails[]) => ({ ...state, likes: likes }))
+$currentUser.on(setCurrentUserLikes, (state, likes: IdsListItem[]) => ({ ...state, likes: likes }))
+$currentUser.on(setCurrentUserFavorites, (state, favorites: IdsListItem[]) => ({ ...state, favorites: favorites }))
 $token.on(setToken, (_state, token) => token)

@@ -4,7 +4,7 @@ import { useStore } from 'effector-react'
 
 import { cocktailsFetcher } from '@api/cocktails'
 import { Cocktail, CocktailIngredient } from '@types'
-import { $currentUser, fetchCurrentUserFx, setCurrentUserLikes } from '@models/users'
+import { $currentUser, setCurrentUserLikes, setCurrentUserFavorites, setCurrentUserTasted } from '@models/users'
 
 import { CardPhoto } from '@components/cocktails/CardPhoto'
 import { TitleSecondary } from '@components/common/TitleSecondary'

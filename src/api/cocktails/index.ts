@@ -30,5 +30,14 @@ class CocktailsFetcher extends API {
   unlike<R = Cocktail>(cocktailId: number) {
     return super.post<R>({ path: `cocktails/unlike`, params: { id: cocktailId } })
   }
+
+  favorite<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/favorite`, params: { id: cocktailId } })
+  }
+
+  unfavorite<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/unfavorite`, params: { id: cocktailId } })
+  }
+
 }
 export const cocktailsFetcher = new CocktailsFetcher()

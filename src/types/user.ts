@@ -1,5 +1,6 @@
 import { Image } from './image'
 import { Ingredient } from './ingredient'
+import { IdsListItem } from './idsListItem'
 
 export type User = {
   id: number
@@ -11,10 +12,10 @@ export type User = {
   created_at: string
   avatar: Image
   ingredients: Ingredient[]
-  followers: { id: number }[]
-  followings: { id: number }[]
-  cocktails: { id: number }[]
-  tasted: { id: number }[]
-  favorites: { id: number }[]
-  likes: { id: number }[]
+  followers: IdsListItem[]
+  followings: IdsListItem[]
+  cocktails: IdsListItem[]
+  tasted: IdsListItem[]
+  favorites: IdsListItem[]
+  likes: IdsListItem[]
 }
