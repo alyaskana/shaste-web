@@ -22,5 +22,13 @@ class CocktailsFetcher extends API {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
   }
+
+  like<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/like`, params: { id: cocktailId } })
+  }
+
+  unlike<R = Cocktail>(cocktailId: number) {
+    return super.post<R>({ path: `cocktails/unlike`, params: { id: cocktailId } })
+  }
 }
 export const cocktailsFetcher = new CocktailsFetcher()

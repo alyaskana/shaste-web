@@ -1,7 +1,11 @@
 import { useState, useEffect, FC } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { cocktailsFetcher } from '../../api/cocktails'
-import { Cocktail, CocktailIngredient } from '../../types'
+import { useStore } from 'effector-react'
+
+import { cocktailsFetcher } from '@api/cocktails'
+import { Cocktail, CocktailIngredient } from '@types'
+import { $currentUser, fetchCurrentUserFx, setCurrentUserLikes } from '@models/users'
+
 import { CardPhoto } from '@components/cocktails/CardPhoto'
 import { TitleSecondary } from '@components/common/TitleSecondary'
 import { IngredientHave } from '@components/cocktails/IngredientHave'
@@ -29,6 +33,7 @@ type Params = {
 
 export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   const cocktailId = match.params.id
+  const currentUser = useStore($currentUser)
   const [cocktail, setCocktail] = useState<Cocktail>(null)
 
   useEffect(() => {
@@ -37,13 +42,41 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
     })
   }, [cocktailId])
 
+  const handleLike = () => {
+    const isLiked = currentUser.likes.some((like) => like.id === cocktail.id)
+
+    if (isLiked) {
+      cocktailsFetcher.unlike(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserLikes(currentUser.likes.filter((like) => like.id != cocktail.id))
+      })
+    } else {
+      cocktailsFetcher.like(cocktail.id).then((response) => {
+        setCocktail(response.data)
+        setCurrentUserLikes([...currentUser.likes, { id: cocktail.id }])
+      })
+    }
+  }
+
+  const handleFavorite = () => {
+    true
+  }
+  const handleTaste = () => {
+    true
+  }
+
   if (!cocktail) {
     return <></>
   }
 
   return (
     <>
-      <RecipeInfo cocktail={cocktail} />
+      <RecipeInfo
+        cocktail={cocktail}
+        handleLike={handleLike}
+        handleFavorite={handleFavorite}
+        handleTaste={handleTaste}
+      />
       <div className={s.cocktail_content}>
         <div className={s.receipe_info}>
           <div className={s.ingredients}>

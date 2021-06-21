@@ -31,6 +31,8 @@ const initialUser: User = {
   followings: [],
   cocktails: [],
   tasted: [],
+  favorites: [],
+  likes: [],
 }
 
 enum ContentTabTypes {

@@ -13,6 +13,8 @@ export type User = {
   ingredients: Ingredient[]
   followers: { id: number }[]
   followings: { id: number }[]
-  cocktails: { id: string }[]
-  tasted: { id: string }[]
+  cocktails: { id: number }[]
+  tasted: { id: number }[]
+  favorites: { id: number }[]
+  likes: { id: number }[]
 }
