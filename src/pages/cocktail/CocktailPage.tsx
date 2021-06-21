@@ -1,10 +1,8 @@
 import { useState, useEffect, FC } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { useStore } from 'effector-react'
 
 import { cocktailsFetcher } from '@api/cocktails'
 import { Cocktail, CocktailIngredient } from '@types'
-import { $currentUser, setCurrentUserLikes, setCurrentUserFavorites, setCurrentUserTasted } from '@models/users'
 
 import { CardPhoto } from '@components/cocktails/CardPhoto'
 import { TitleSecondary } from '@components/common/TitleSecondary'
@@ -33,7 +31,6 @@ type Params = {
 
 export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   const cocktailId = match.params.id
-  const currentUser = useStore($currentUser)
   const [cocktail, setCocktail] = useState<Cocktail>(null)
 
   useEffect(() => {
@@ -42,66 +39,13 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
     })
   }, [cocktailId])
 
-  const handleLike = () => {
-    const isLiked = currentUser.likes.some((like) => like.id === cocktail.id)
-
-    if (isLiked) {
-      cocktailsFetcher.unlike(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserLikes(currentUser.likes.filter((like) => like.id != cocktail.id))
-      })
-    } else {
-      cocktailsFetcher.like(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserLikes([...currentUser.likes, { id: cocktail.id }])
-      })
-    }
-  }
-
-  const handleFavorite = () => {
-    const isFavorited = currentUser.favorites.some((favorite) => favorite.id === cocktail.id)
-
-    if (isFavorited) {
-      cocktailsFetcher.unfavorite(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserFavorites(currentUser.favorites.filter((favorite) => favorite.id != cocktail.id))
-      })
-    } else {
-      cocktailsFetcher.favorite(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserFavorites([...currentUser.favorites, { id: cocktail.id }])
-      })
-    }
-  }
-
-  const handleTaste = () => {
-    const isTasted = currentUser.tasted.some((taste) => taste.id === cocktail.id)
-
-    if (isTasted) {
-      cocktailsFetcher.untaste(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserTasted(currentUser.tasted.filter((taste) => taste.id != cocktail.id))
-      })
-    } else {
-      cocktailsFetcher.taste(cocktail.id).then((response) => {
-        setCocktail(response.data)
-        setCurrentUserTasted([...currentUser.tasted, { id: cocktail.id }])
-      })
-    }
-  }
-
   if (!cocktail) {
     return <></>
   }
 
   return (
     <>
-      <RecipeInfo
-        cocktail={cocktail}
-        handleLike={handleLike}
-        handleFavorite={handleFavorite}
-        handleTaste={handleTaste}
-      />
+      <RecipeInfo cocktail={cocktail} setCocktail={setCocktail} />
       <div className={s.cocktail_content}>
         <div className={s.receipe_info}>
           <div className={s.ingredients}>
