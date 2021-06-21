@@ -1,50 +1,38 @@
-import s from './RecipeInfo.module.scss'
-import taste_icon from '../../../assets/images/icons/toast_icon_default.svg'
-import taste_icon_active from '../../../assets/images/icons/toast_icon_active.svg'
-import save_icon from '../../../assets/images/icons/save_icon_default.svg'
-import save_icon_active from '../../../assets/images/icons/save_icon_active.svg'
-import like_icon from '../../../assets/images/icons/like_icon_default.svg'
-import like_icon_active from '../../../assets/images/icons/like_icon_active.svg'
-import { ActionIcon } from '../../common/ActionIcon'
+import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
-import { CardPhoto } from '@components/cocktails/CardPhoto'
+import { useStore } from 'effector-react'
 
-export const RecipeInfo = ({ cocktail }) => {
+import { Cocktail } from '@types'
+import { $currentUser } from '@models/users'
+
+import { CardPhoto } from '@components/cocktails/CardPhoto'
+import { IconWithCounter, Style } from '@components/common/IconWithCounter'
+
+import s from './RecipeInfo.module.scss'
+
+import { ReactComponent as ToastIconDefault } from '@icons/toast_icon_default.svg'
+import { ReactComponent as ToastIconHover } from '@icons/toast_icon_hover.svg'
+import { ReactComponent as ToastIconActive } from '@icons/toast_icon_active.svg'
+
+import { ReactComponent as LikeIconDefault } from '@icons/like_icon_default.svg'
+import { ReactComponent as LikeIconHover } from '@icons/like_icon_hover.svg'
+import { ReactComponent as LikeIconActive } from '@icons/like_icon_active.svg'
+
+import { ReactComponent as SaveIconDefault } from '@icons/save_icon_default.svg'
+import { ReactComponent as SaveIconHover } from '@icons/save_icon_hover.svg'
+import { ReactComponent as SaveIconActive } from '@icons/save_icon_active.svg'
+
+type RecipeInfoProps = {
+  cocktail: Cocktail
+  handleLike: () => void
+  handleFavorite: () => void
+  handleTaste: () => void
+}
+
+export const RecipeInfo: FC<RecipeInfoProps> = ({ cocktail, handleLike, handleFavorite, handleTaste }) => {
+  const currentUser = useStore($currentUser)
+
   return (
-    // <div className={s.wrapper}>
-    //   <div className={s.cocktail_title}>
-    //     {cocktail.title}
-    //   </div>
-    //   <div className={s.description}>
-    //     {cocktail.description}
-    //   </div>
-    //   <div className={s.tags}>
-    //     {Object.entries(cocktail.tags).map(([tag, count]) => (
-    //       <span className={s.tag}>
-    //         {tag} {count}
-    //       </span>
-    //     ))}
-    //   </div>
-    //   <div className={s.actions}>
-    //     <ActionIcon
-    //       icon_src_default={taste_icon}
-    //       icon_src_active={taste_icon_active}
-    //       users_count={cocktail.tasted_users} />
-    //     <ActionIcon
-    //       icon_src_default={like_icon}
-    //       icon_src_active={like_icon_active}
-    //       users_count={cocktail.liked_users} />
-    //     <ActionIcon
-    //       icon_src_default={save_icon}
-    //       icon_src_active={save_icon_active}
-    //       users_count={cocktail.favorited_users} />
-    //   </div>
-    //   <div className={s.about}>
-    //     <NavLink to={'/users/' + cocktail.user.id} className={s.author_wrapper}>
-    //       <div className={s.author}>@{cocktail.user.login}</div>
-    //     </NavLink>
-    //   </div>
-    // </div>
     <div className={s.wrapper}>
       <div className={s.content_wrapper}>
         <div className={s.info}>
@@ -61,20 +49,32 @@ export const RecipeInfo = ({ cocktail }) => {
               ))}
             </div>
             <div className={s.actions}>
-              <ActionIcon
-                icon_src_default={taste_icon}
-                icon_src_active={taste_icon_active}
-                users_count={cocktail.tasted_users}
+              <IconWithCounter
+                defaulIcon={<ToastIconDefault />}
+                hoverIcon={<ToastIconHover />}
+                activeIcon={<ToastIconActive />}
+                isActive={currentUser.tasted.some((tastedItem) => tastedItem.id === cocktail.id)}
+                count={cocktail.tasted_users}
+                style={Style.Light}
+                onClick={handleTaste}
               />
-              <ActionIcon
-                icon_src_default={like_icon}
-                icon_src_active={like_icon_active}
-                users_count={cocktail.liked_users}
+              <IconWithCounter
+                defaulIcon={<LikeIconDefault />}
+                hoverIcon={<LikeIconHover />}
+                activeIcon={<LikeIconActive />}
+                isActive={currentUser.likes.some((like) => like.id === cocktail.id)}
+                count={cocktail.liked_users}
+                style={Style.Light}
+                onClick={handleLike}
               />
-              <ActionIcon
-                icon_src_default={save_icon}
-                icon_src_active={save_icon_active}
-                users_count={cocktail.favorited_users}
+              <IconWithCounter
+                defaulIcon={<SaveIconDefault />}
+                hoverIcon={<SaveIconHover />}
+                activeIcon={<SaveIconActive />}
+                isActive={currentUser.favorites.some((favorite) => favorite.id === cocktail.id)}
+                count={cocktail.favorited_users}
+                style={Style.Light}
+                onClick={handleFavorite}
               />
             </div>
             <NavLink to={`/${cocktail.user.login}`} className={s.author}>
