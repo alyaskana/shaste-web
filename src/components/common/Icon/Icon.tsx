@@ -1,45 +1,28 @@
-import { useState } from 'react'
-import s from './ActionIcon.module.scss'
+import { useState, FC, ReactElement } from 'react'
+import cn from 'classnames'
+import s from './Icon.module.scss'
 
-export const Icon = ({ src, srcHover, srcActive, isActive }) => {
-  const [currentSrc, setCurrentSrc] = useState(src)
-  if (isActive) {
-    return (
-      <div className={s.icon_wrapper}>
-        <img className={s.icon} src={srcActive} alt="taste icon" />
-      </div>
-    )
-  }
+type IconProps = {
+  defaulIcon: ReactElement
+  hoverIcon: ReactElement
+  activeIcon: ReactElement
+  isActive: boolean
+  className?: string
+}
+
+export const Icon: FC<IconProps> = ({ defaulIcon, hoverIcon, activeIcon, isActive, className }) => {
+  const [currentIcon, setCurrentIcon] = useState(defaulIcon)
 
   const handleLeave = () => {
-    setCurrentSrc(src)
+    setCurrentIcon(defaulIcon)
   }
   const handleEnter = () => {
-    setCurrentSrc(srcHover)
+    setCurrentIcon(hoverIcon)
   }
 
   return (
-    <div className={s.icon_wrapper} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
-      <img className={s.icon} src={currentSrc} alt="taste icon" />
+    <div className={cn(s.icon_wrapper, className)} onMouseEnter={handleEnter} onMouseLeave={handleLeave}>
+      {isActive ? activeIcon : currentIcon}
     </div>
   )
 }
-
-// <Action icon={<Icon src='ddd' srcHover='' />} count={ } />
-
-// cosnt Action = ({ icon, count }) => (
-//   <div className={s.action}>
-//     {icon}
-//     {count}
-//   </div>
-// )
-
-// cosnt Likes = () => {
-//   const updateCount = () => {
-//     axios.post()
-//   }
-
-//   return (
-//     <Action icon={<Icon src='ddd' srcHover='' />} count={count} updateCount={updateCount}/>
-//   )
-// }
