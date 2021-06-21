@@ -27,7 +27,7 @@ type Params = {
   id: string
 }
 
-const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
+export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   const cocktailId = match.params.id
   const [cocktail, setCocktail] = useState<Cocktail>(null)
 
@@ -42,7 +42,7 @@ const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   }
 
   return (
-    <div>
+    <>
       <RecipeHeader cocktail={cocktail} />
       <div className={s.cocktail_content}>
         <div className={s.receipe_info}>
@@ -64,8 +64,6 @@ const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
         </div>
         {cocktail.youtube ? <div className={s.video}><YoutubeEmbed embedId={cocktail.youtube} /></div> : <></>}
       </div>
-    </div >
+    </>
   )
 }
-
-export default CocktailPage

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useStore } from "effector-react";
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
-import CocktailPage from './pages/cocktail/CocktailPage';
+import { CocktailPage } from './pages/cocktail';
 import CocktailsPage from './pages/cocktails/CocktailsPage';
 import CollectionsPage from './pages/collections/CollectionsPage';
 import FeedPage from './pages/feed/FeedPage';

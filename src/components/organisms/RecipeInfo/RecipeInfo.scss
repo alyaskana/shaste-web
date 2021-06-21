@@ -1,0 +1,104 @@
+@import 'src/assets/css/variables.scss';
+
+.wrapper {
+  background-color: $black;
+  color: white;
+  padding: 80px 0;
+}
+
+.content_wrapper {
+  display: flex;
+  gap: 160px;
+  max-width: 1120px;
+  margin: 0px auto;
+
+  &>div {
+    flex: 1;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cocktail_title {
+  text-align: center;
+  font-family: 'Stravinsky';
+  font-size: 52px;
+}
+
+.description {
+  font-family: 'Baskerville';
+  font-style: italic;
+  font-size: 24px;
+  line-height: 115%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.tags {
+  max-width: 750px;
+  margin: 25px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .tag {
+    border: 1px solid white;
+    padding: 0 12px;
+    font-size: 20px;
+    line-height: 28px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+}
+
+.image {
+  max-width: 480px;
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.actions {
+  margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.about {
+  margin: 50px auto 0;
+  max-width: 750px;
+}
+
+.author_wrapper {
+  text-align: center;
+  margin: 20px 0 35px;
+  display: block;
+  text-decoration: none;
+}
