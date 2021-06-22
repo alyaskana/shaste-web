@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { setToken, setCurrentUser } from '../../models/users'
+import { setToken, setCurrentUser } from '@models/users'
+import { Formik, Field, Form, ErrorMessage } from 'formik'
+import { TitleSecondary } from '@components/common/TitleSecondary'
 import s from './Login.module.scss'
 
 async function loginUser(credentials) {
@@ -30,21 +32,29 @@ const LoginPage = () => {
   }
 
   return (
-    <div className={s.login_wrapper}>
-      <h1>Please Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Email</p>
-          <input name="email" type="email" onChange={(e) => setUserEmail(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
-          <input name="password" type="password" onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
-        </div>
-      </form>
+    <div className={s.login_page}>
+      <TitleSecondary title="вход" className={s.title} />
+      <Formik initialValues={{ email: '', password: '' }} onSubmit={handleSubmit}>
+        <Form className={s.form}>
+          <Field name="email" type="email" placeholder="введите e-mail" className={s.field} />
+          <Field name="password" type="password" placeholder="введите пароль" className={s.field} />
+          <button type="submit" className={s.button}>
+            Войти
+          </button>
+        </Form>
+      </Formik>
+      <div className={s.separate}>
+        <div className={s.line}></div>
+        <div className={s.text}>или</div>
+        <div className={s.line}></div>
+      </div>
+      <div className={s.button}>Войти через Google</div>
+      <div className={s.to_sign_up}>
+        <div>нет аккаунта?</div>
+        <a href="/sign_up" className={s.link}>
+          зарегистрироваться
+        </a>
+      </div>
     </div>
   )
 }
