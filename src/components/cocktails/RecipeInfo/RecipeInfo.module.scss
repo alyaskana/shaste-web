@@ -12,7 +12,7 @@
   max-width: 1120px;
   margin: 0px auto;
 
-  &>div {
+  & > div {
     flex: 1;
   }
 }
@@ -51,37 +51,11 @@
     border: 1px solid white;
     padding: 0 12px;
     font-size: 20px;
-    line-height: 28px;
+    height: 28px;
     display: inline-block;
     white-space: nowrap;
   }
 }
-
-.image {
-  max-width: 480px;
-  width: 100%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .actions {
   margin-top: 35px;
@@ -91,14 +65,15 @@
   gap: 20px;
 }
 
-.about {
-  margin: 50px auto 0;
-  max-width: 750px;
+.author {
+  color: white;
+  text-decoration: none;
+  margin: 20px auto 0;
+  display: block;
+  width: fit-content;
 }
 
-.author_wrapper {
-  text-align: center;
-  margin: 20px 0 35px;
-  display: block;
-  text-decoration: none;
+.image {
+  max-width: 480px;
+  width: 100%;
 }

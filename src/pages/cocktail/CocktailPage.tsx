@@ -4,7 +4,6 @@ import { RouteComponentProps } from 'react-router-dom'
 import { cocktailsFetcher } from '@api/cocktails'
 import { Cocktail, CocktailIngredient } from '@types'
 
-import { CardPhoto } from '@components/cocktails/CardPhoto'
 import { TitleSecondary } from '@components/common/TitleSecondary'
 import { IngredientHave } from '@components/cocktails/IngredientHave'
 import { RecipeStep } from '@components/cocktails/RecipeStep'
@@ -46,19 +45,14 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
   return (
     <>
       <RecipeInfo cocktail={cocktail} setCocktail={setCocktail} />
-      <div className={s.cocktail_content}>
-        <div className={s.receipe_info}>
-          <div className={s.ingredients}>
-            <TitleSecondary title="Ингредиенты" />
-            <div className={s.ingredients_list}>{cocktailIngredients(cocktail.ingredients)}</div>
+      <div className={s.recipe_content}>
+        <div className={s.recipe_content_items}>
+          <div className={s.recipe_content_item}>
+            <TitleSecondary title="Ингредиенты" className={s.recipe_content_title} />
+            {cocktailIngredients(cocktail.ingredients)}
           </div>
-          <div className={s.separator}></div>
-          <div className={s.cocktail_image}>
-            <CardPhoto src={'//localhost:3000' + cocktail.image.url} />
-          </div>
-          <div className={s.separator}></div>
-          <div className={s.instructions}>
-            <TitleSecondary title="Приготовление" />
+          <div className={s.recipe_content_item}>
+            <TitleSecondary title="Приготовление" className={s.recipe_content_title} />
             {cocktailDirections(cocktail.directions)}
           </div>
         </div>

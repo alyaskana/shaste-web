@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 import { Cocktail } from '@types'
 
-import { CardPhoto } from '@components/cocktails/CardPhoto'
+import { RecipePhoto } from '@components/cocktails/RecipePhoto'
 import { CocktailLikes } from '@components/cocktails/CocktailLikes'
 import { CocktailFavorites } from '@components/cocktails/CocktailFavorites'
 import { CocktailTasted } from '@components/cocktails/CocktailTasted'
@@ -43,7 +43,7 @@ export const RecipeInfo: FC<RecipeInfoProps> = ({ cocktail, setCocktail }) => {
           </div>
         </div>
         <div className={s.image}>
-          <CardPhoto src={'//localhost:3000' + cocktail.image.url} />
+          <RecipePhoto src={'//localhost:3000' + cocktail.image.url} />
         </div>
       </div>
     </div>

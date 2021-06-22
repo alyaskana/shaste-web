@@ -1,0 +1,12 @@
+@import 'src/assets/css/variables.scss';
+
+.img_wrapper {
+  aspect-ratio: 480 / 595;
+  background: no-repeat center;
+  background-size: cover;
+
+  .img {
+    width: 100%;
+    height: 100%;
+  }
+}

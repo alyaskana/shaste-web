@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react'
 import s from './PhotoUploader.module.scss'
 import { ReactComponent as IconPhoto } from '@icons/IconPhoto.svg'
-import { CardPhoto } from '@components/cocktails/CardPhoto'
+import { RecipePhoto } from '@components/cocktails/RecipePhoto'
 
 type TPhotoUploaderProps = {
   setFieldValue: (field: string, value: any, shouldValidate?: boolean) => void
@@ -39,7 +39,7 @@ export const PhotoUploader: FC<TPhotoUploaderProps> = ({ setFieldValue }) => {
       </div>
       {imgPrewiew && (
         <div className={s.prewiew}>
-          <CardPhoto src={imgPrewiew} />
+          <RecipePhoto src={imgPrewiew} />
         </div>
       )}
     </>

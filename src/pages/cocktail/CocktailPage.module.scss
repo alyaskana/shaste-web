@@ -1,35 +1,29 @@
 @import 'src/assets/css/variables.scss';
 
-.cocktail_content {
-  padding: 90px 0;
+.recipe_content {
+  padding: 80px 0;
   border-bottom: 1px solid $black;
+  max-width: 1120px;
+  margin: 0 auto;
 
-  .receipe_info {
+  &_items {
     display: flex;
-    max-width: 1340px;
-    margin: 0 auto;
-    gap: 30px;
-
-    .separator {
-      border-right: 1px solid $black;
-    }
-
-    .ingredients {
-      flex: 3;
-    }
-
-    .cocktail_image {
-      flex: 2;
-      flex-shrink: 0;
-    }
-
-    .instructions {
-      flex: 3;
-    }
+    justify-content: space-between;
+    gap: 160px;
   }
 
-  .video {
-    margin: 60px auto 0;
-    max-width: 1000px;
+  &_item {
+    border-top: 1px solid $gray_3;
+    border-bottom: 1px solid $gray_3;
+    padding: 80px 0;
+    flex: 1;
   }
+
+  &_title {
+    margin-bottom: 40px;
+  }
+}
+
+.video {
+  margin: 80px auto 0;
 }
