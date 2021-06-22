@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import s from './SearchMenu.module.scss'
-import icon_find from '@/assets/images/icons/a-icon-find.svg'
+import icon_find from '@/assets/images/icons/search_icon.svg'
 
 export const SearchMenu = () => {
   const [showSearch, setShowSearch] = useState(false)

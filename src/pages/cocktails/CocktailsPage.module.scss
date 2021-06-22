@@ -1,24 +1,13 @@
 @import 'src/assets/css/variables.scss';
 
-.add_cocktail_btn {
-  font-family: 'Akzidenz-Grotesk Pro';
-  font-size: 24px;
-  border-bottom: 1px solid $secondary;
-  text-decoration: none;
-  color: $secondary;
-  display: inline-block;
-  margin-bottom: 40px;
+.search {
+  margin-top: 68px;
 }
 
 .cocktails_list {
   max-width: 1120px;
   margin: 0 auto;
   margin-top: 50px;
-
-  .cocktail_wrapper {
-    text-decoration: none;
-    color: inherit;
-  }
 }
 
 .my_masonry_grid {

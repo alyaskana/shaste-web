@@ -1,5 +1,10 @@
 @import 'src/assets/css/variables.scss';
 
+.card_wrapper {
+  text-decoration: none;
+  color: inherit;
+}
+
 .recipe_card {
   max-width: 312px;
   border: 1px solid $black;
