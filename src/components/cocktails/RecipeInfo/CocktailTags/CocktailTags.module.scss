@@ -1,0 +1,19 @@
+.tags {
+  max-width: 750px;
+  margin: 25px auto 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .tag {
+    border: 1px solid white;
+    padding: 0 12px;
+    font-size: 20px;
+    height: 28px;
+    line-height: 26px;
+    display: inline-block;
+    white-space: nowrap;
+  }
+}

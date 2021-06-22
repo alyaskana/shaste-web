@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { Cocktail } from '@types'
 
 import { RecipePhoto } from '@components/cocktails/RecipePhoto'
+import { CocktailTags } from './CocktailTags'
 import { CocktailLikes } from '@components/cocktails/CocktailLikes'
 import { CocktailFavorites } from '@components/cocktails/CocktailFavorites'
 import { CocktailTasted } from '@components/cocktails/CocktailTasted'
@@ -25,13 +26,7 @@ export const RecipeInfo: FC<RecipeInfoProps> = ({ cocktail, setCocktail }) => {
             <div className={s.description}>{cocktail.description}</div>
           </div>
           <div>
-            <div className={s.tags}>
-              {Object.entries(cocktail.tags).map(([tag, count], index) => (
-                <span key={index} className={s.tag}>
-                  {tag} {count}
-                </span>
-              ))}
-            </div>
+            <CocktailTags cocktail={cocktail} />
             <div className={s.actions}>
               <CocktailTasted cocktail={cocktail} setCocktail={setCocktail} />
               <CocktailLikes cocktail={cocktail} setCocktail={setCocktail} />
