@@ -18,7 +18,7 @@ type CocktailFavoritesProps = {
 
 export const CocktailFavorites: FC<CocktailFavoritesProps> = ({ cocktail, setCocktail }) => {
   const currentUser = useStore($currentUser)
-  const isFavorited = currentUser.favorites.some((favorite) => favorite.id === cocktail.id)
+  const isFavorited = currentUser && currentUser.favorites.some((favorite) => favorite.id === cocktail.id)
 
   const handleFavorite = () => {
     if (isFavorited) {

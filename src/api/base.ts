@@ -1,8 +1,16 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { $token } from '../models/users'
 
 export const fetcher = axios.create({
   baseURL: 'http://localhost:3000/api/',
+})
+
+fetcher.interceptors.response.use(undefined, async (error: AxiosError) => {
+  if (error.response?.status == 401) {
+    return (window.location.href = '/login')
+  }
+
+  return Promise.reject(error)
 })
 
 type GetParams = {

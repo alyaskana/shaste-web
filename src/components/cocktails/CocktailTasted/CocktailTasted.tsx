@@ -18,7 +18,7 @@ type CocktailTastedProps = {
 
 export const CocktailTasted: FC<CocktailTastedProps> = ({ cocktail, setCocktail }) => {
   const currentUser = useStore($currentUser)
-  const isTasted = currentUser.tasted.some((taste) => taste.id === cocktail.id)
+  const isTasted = currentUser && currentUser.tasted.some((taste) => taste.id === cocktail.id)
 
   const handleTaste = () => {
     if (isTasted) {

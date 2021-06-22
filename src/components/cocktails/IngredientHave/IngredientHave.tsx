@@ -11,11 +11,18 @@ type IngredientHaveProps = {
   ingredient: CocktailIngredient
 }
 
+type AvailableIconProps = {
+  isAvailable: boolean
+}
+const AvailableIcon: FC<AvailableIconProps> = ({ isAvailable }) => {
+  return <>{isAvailable ? <AvailableIconSvg /> : <UnavailableIconSvg />}</>
+}
+
 export const IngredientHave: FC<IngredientHaveProps> = ({ ingredient }) => {
-  const user = useStore($currentUser)
+  const currentUser = useStore($currentUser)
 
   const isAvailable = () => {
-    return !!user.ingredients.find((i) => i.id === ingredient.id)
+    return !!currentUser.ingredients.find((i) => i.id === ingredient.id)
   }
 
   return (
@@ -23,7 +30,7 @@ export const IngredientHave: FC<IngredientHaveProps> = ({ ingredient }) => {
       <p className={s.ingredient_name}>{ingredient.name}</p>
       <div className={s.ingredient_info}>
         <p className={s.amount}>{ingredient.amount}</p>
-        {isAvailable() ? <AvailableIconSvg /> : <UnavailableIconSvg />}
+        {currentUser && <AvailableIcon isAvailable={isAvailable()} />}
       </div>
     </div>
   )

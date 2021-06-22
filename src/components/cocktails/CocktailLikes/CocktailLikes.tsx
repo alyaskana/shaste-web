@@ -18,7 +18,7 @@ type CocktailLikesProps = {
 
 export const CocktailLikes: FC<CocktailLikesProps> = ({ cocktail, setCocktail }) => {
   const currentUser = useStore($currentUser)
-  const isLiked = currentUser.likes.some((like) => like.id === cocktail.id)
+  const isLiked = currentUser && currentUser.likes.some((like) => like.id === cocktail.id)
 
   const handleLike = () => {
     if (isLiked) {
