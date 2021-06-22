@@ -1,10 +1,14 @@
 import { NavLink } from 'react-router-dom'
-import s from './NavigationMenu.module.scss'
+import { useStore } from 'effector-react'
+import { $token } from '@models/users'
+import s from './Navigation.module.scss'
 
-export const NavigationMenu = ({ user }) => {
+export const Navigation = () => {
+  const token = useStore($token)
+
   return (
     <div className={s.pages}>
-      {user && (
+      {token && (
         <NavLink to="/feed" activeClassName={s.active}>
           лента
         </NavLink>

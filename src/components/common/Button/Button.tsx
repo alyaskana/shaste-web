@@ -1,8 +1,16 @@
+import { FC } from 'react'
+import cn from 'classnames'
 import s from './Button.module.scss'
 
-export const Button = ({ text, onClick }) => {
+type ButtonProps = {
+  text: string
+  onClick: () => void
+  className?: string
+}
+
+export const Button: FC<ButtonProps> = ({ text, onClick, className }) => {
   return (
-    <button onClick={onClick} className={s.btn}>
+    <button type="button" onClick={onClick} className={cn(s.btn, s[className])}>
       {text}
     </button>
   )

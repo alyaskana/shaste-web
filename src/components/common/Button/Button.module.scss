@@ -1,10 +1,24 @@
 @import 'src/assets/css/variables.scss';
 
 .btn {
+  text-decoration: none;
+  padding: 0 20px;
+  font-size: 16px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 40px;
   background-color: $secondary;
-  font-family: 'Akzidenz-Grotesk Pro';
-  font-size: 22px;
-  padding: 5px 10px 8px;
   color: white;
   cursor: pointer;
+  border: none;
+
+  &:hover {
+    box-shadow: 0px 0px 15px rgba(0, 133, 113, 0.15);
+  }
+
+  &.outlined {
+    background-color: white;
+    color: $secondary;
+    border: 1px solid $secondary;
+  }
 }

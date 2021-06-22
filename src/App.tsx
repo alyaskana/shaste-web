@@ -12,20 +12,17 @@ import LoginPage from './pages/login/LoginPage'
 import { NewCocktailPage } from './pages/NewCocktail'
 import { Profile } from './pages/Profile'
 import { MyBar } from './pages/MyBar'
-import { $token, $currentUser, fetchCurrentUserFx } from './models/users'
+import { $token, fetchCurrentUserFx } from './models/users'
 import './models/init'
 
 function App() {
   const token = useStore($token)
-  const currentUser = useStore($currentUser)
 
   useEffect(() => {
-    fetchCurrentUserFx({})
-  }, [])
-
-  if (Object.keys(currentUser).length === 0) {
-    return null
-  }
+    if (token) {
+      fetchCurrentUserFx({})
+    }
+  }, [token])
 
   return (
     <BrowserRouter>
