@@ -5,7 +5,7 @@ import { persist } from 'effector-storage/local'
 const localStorage = createDomain('persist')
 localStorage.onCreateStore((store) => persist({ store }))
 
-export const $currentUser = createStore<User>({} as User)
+export const $currentUser = createStore<User>(null as User)
 export const $token = localStorage.createStore<string>(null, { name: 'token' })
 
 export const fetchCurrentUserFx = createEffect()
