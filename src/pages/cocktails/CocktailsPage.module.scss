@@ -11,9 +11,8 @@
 }
 
 .cocktails_list {
-  max-width: 1440px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 50px;
   margin-top: 50px;
 
   .cocktail_wrapper {
@@ -35,7 +34,7 @@
     /* gutter size */
     background-clip: padding-box;
 
-    >a {
+    > a {
       display: block;
       margin-bottom: 30px;
     }
