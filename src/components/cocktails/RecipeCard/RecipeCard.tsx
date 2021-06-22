@@ -1,17 +1,18 @@
 import { FC } from 'react'
-import { NavLink } from 'react-router-dom'
 import { CardPhoto } from './CardPhoto'
 import { Ingredient } from './Ingredient'
 import s from './RecipeCard.module.scss'
 import { Cocktail } from '@types'
+import cn from 'classnames'
 
 type RecipeCardProps = {
   cocktail: Cocktail
+  className?: string
 }
 
-export const RecipeCard: FC<RecipeCardProps> = ({ cocktail }) => {
+export const RecipeCard: FC<RecipeCardProps> = ({ cocktail, className }) => {
   return (
-    <NavLink to={'/cocktails/' + cocktail.id} className={s.card_wrapper}>
+    <a href={`/cocktails/${cocktail.id}`} className={cn(s.card_wrapper, className)}>
       <div className={s.recipe_card}>
         <CardPhoto src={`//localhost:3000/${cocktail.image.url}`} className={s.recipe_card_photo} />
         <div className={s.recipe_card_content}>
@@ -26,6 +27,6 @@ export const RecipeCard: FC<RecipeCardProps> = ({ cocktail }) => {
           </div>
         </div>
       </div>
-    </NavLink>
+    </a>
   )
 }

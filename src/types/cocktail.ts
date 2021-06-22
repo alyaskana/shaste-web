@@ -25,4 +25,5 @@ export type Cocktail = {
   tasted_users: number
   favorited_users: number
   liked_users: number
+  similar_cocktails?: Cocktail[]
 }

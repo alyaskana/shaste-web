@@ -11,6 +11,7 @@ import { RecipeInfo } from '@components/cocktails/RecipeInfo'
 import { YoutubeEmbed } from '@components/cocktails/YoutubeEmbed'
 
 import s from './CocktailPage.module.scss'
+import { RecipeCard } from '@components/cocktails/RecipeCard'
 
 const cocktailIngredients = (ingredients: CocktailIngredient[]) => {
   return ingredients.map((ingredient) => {
@@ -63,6 +64,14 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
         ) : (
           <></>
         )}
+      </div>
+      <div className={s.similar_cocktails}>
+        <TitleSecondary title="Коктейли с похожими ингредиентами" />
+        <div className={s.similar_cocktails_items}>
+          {cocktail.similar_cocktails.map((cocktail) => (
+            <RecipeCard key={cocktail.id} cocktail={cocktail} className={s.similar_cocktails_item} />
+          ))}
+        </div>
       </div>
     </>
   )
