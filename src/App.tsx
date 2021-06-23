@@ -12,6 +12,7 @@ import LoginPage from './pages/login/LoginPage'
 import { NewCocktailPage } from './pages/NewCocktail'
 import { Profile } from './pages/Profile'
 import { MyBar } from './pages/MyBar'
+import { SignUp } from './pages/SignUp'
 import { $token, fetchCurrentUserFx } from './models/users'
 import './models/init'
 
@@ -30,6 +31,9 @@ function App() {
       <Switch>
         <Route exact path="/login">
           {token ? <Redirect to="/cocktails" /> : <LoginPage />}
+        </Route>
+        <Route exact path="/sign_up">
+          <SignUp />
         </Route>
         <Route exact path="/feed">
           <FeedPage />
