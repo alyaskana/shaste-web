@@ -27,6 +27,13 @@ class UsersFetcher extends API {
     return super.post<R>({ path: `users/unfollow`, params: { id: userId } })
   }
 
+  create<R>(data) {
+    return super.post<R>({
+      path: `signup`,
+      params: data,
+    })
+  }
+
   login<R>(data) {
     return super.post<R>({
       path: `login`,
