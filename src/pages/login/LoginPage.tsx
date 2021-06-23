@@ -1,34 +1,15 @@
-import axios from 'axios'
-import { useState } from 'react'
-import { setToken, setCurrentUser } from '@models/users'
+import { setToken } from '@models/users'
 import { Formik, Field, Form } from 'formik'
 import { TitleSecondary } from '@components/common/TitleSecondary'
+import { usersFetcher } from '@api/users'
 import s from './Login.module.scss'
 
-async function loginUser(credentials) {
-  return axios
-    .post('http://localhost:3000/api/login', credentials, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then((response) => ({ token: response.headers.authorization, user: response.data }))
-}
-
 const LoginPage = () => {
-  const [useremail, setUserEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const userData = await loginUser({
-      user: {
-        email: useremail,
-        password,
-      },
+  const handleSubmit = (values, { setSubmitting }) => {
+    usersFetcher.login({ user: values }).then((response) => {
+      setToken(response.headers.authorization)
+      setSubmitting(false)
     })
-    setCurrentUser(userData.user)
-    setToken(userData.token)
   }
 
   return (

@@ -26,6 +26,13 @@ class UsersFetcher extends API {
   unfollow<R = never>(userId: number) {
     return super.post<R>({ path: `users/unfollow`, params: { id: userId } })
   }
+
+  login<R>(data) {
+    return super.post<R>({
+      path: `login`,
+      params: data,
+    })
+  }
 }
 
 export const usersFetcher = new UsersFetcher()
