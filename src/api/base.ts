@@ -7,7 +7,7 @@ export const fetcher = axios.create({
 
 fetcher.interceptors.response.use(undefined, async (error: AxiosError) => {
   if (error.response?.status == 401) {
-    return (window.location.href = '/login')
+    window.location.href = '/login'
   }
 
   return Promise.reject(error)

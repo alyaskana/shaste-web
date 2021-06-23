@@ -55,7 +55,7 @@ export const Profile = (props) => {
 
   useEffect(() => {
     setUserIsFollowed(user.followers.some((follower) => follower.id === currentUser.id))
-  }, [user.followers, currentUser.id])
+  }, [user.followers, currentUser?.id])
 
   const handleFollow = () => {
     if (userIsFollowed) {
@@ -83,7 +83,7 @@ export const Profile = (props) => {
         </div>
         <div className={s.username}>{user.user_name}</div>
         <div className={s.login}>@{user.login}</div>
-        {user.id !== currentUser.id ? (
+        {user.id !== currentUser?.id ? (
           <div
             className={cn(s.btn, { [s.isActive]: !userIsFollowed })}
             onClick={() => {
