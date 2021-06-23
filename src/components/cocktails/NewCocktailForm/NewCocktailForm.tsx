@@ -24,42 +24,47 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({
   updateIngrediensOptions,
 }) => {
   const history = useHistory()
+
+  const initialCocktail = {
+    title: '',
+    description: '',
+    ingredients: [
+      {
+        ingredient: {
+          label: '',
+          value: '',
+        },
+        amount: '',
+      },
+    ],
+    steps: [''],
+    photo: null,
+    youtube: '',
+    tags: { goals: [], tastes: [] },
+  }
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    const data = {
+      cocktail: {
+        ...values,
+        tags: [...values.tags.goals.map((goal) => goal.value), ...values.tags.tastes.map((taste) => taste.value)],
+        ingredients: values.ingredients.map((i) => ({ id: i.ingredient.value, amount: i.amount })),
+      },
+    }
+
+    cocktailsFetcher.create(data).then((response) => {
+      history.push(`/cocktails/${response.data.id}`)
+    })
+    setSubmitting(false)
+  }
+
   return (
     <Formik
-      initialValues={{
-        title: '',
-        description: '',
-        ingredients: [
-          {
-            ingredient: {
-              label: '',
-              value: '',
-            },
-            amount: '',
-          },
-        ],
-        steps: [''],
-        photo: null,
-        youtube: '',
-        tags: { goals: [], tastes: [] },
-      }}
+      initialValues={initialCocktail}
       validationSchema={Yup.object({
         title: Yup.string().min(4, 'Не менее 4 знаков').required('Обязательное поле'),
       })}
-      onSubmit={(values, { setSubmitting }) => {
-        const data = {
-          cocktail: {
-            ...values,
-            tags: [...values.tags.goals.map((goal) => goal.value), ...values.tags.tastes.map((taste) => taste.value)],
-            ingredients: values.ingredients.map((i) => ({ id: i.ingredient.value, amount: i.amount })),
-          },
-        }
-
-        cocktailsFetcher.create(data).then((response) => {
-          history.push(`/cocktails/${response.data.id}`)
-        })
-        setSubmitting(false)
-      }}
+      onSubmit={handleSubmit}
     >
       {({ values, setFieldValue }) => (
         <Form className={s.form}>
