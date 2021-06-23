@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useStore } from 'effector-react'
 import s from './MyBar.module.scss'
-import Select from 'react-select'
 import { ingredientsFetcher } from '../../api/ingredients'
 import { usersFetcher } from '../../api/users'
 import { $currentUser, setCurrentUserIngredients } from '../../models/users'
+import { Selector } from './Selector'
 
-type IngredientsOption = {
+export type IngredientsOptionType = {
   label: string
   value: string
 }
@@ -14,7 +14,7 @@ type IngredientsOption = {
 export const MyBar = () => {
   const user = useStore($currentUser)
 
-  const [ingredientsOptions, setIngredientsOptions] = useState<IngredientsOption[]>([])
+  const [ingredientsOptions, setIngredientsOptions] = useState<IngredientsOptionType[]>([])
 
   useEffect(() => {
     ingredientsFetcher.getAll().then((response) => {
@@ -50,11 +50,7 @@ export const MyBar = () => {
       <div className={s.text}>
         здесь вы можете добавить ингредиенты, которые есть у вас дома, чтобы легко найти соотвествующие рецепты
       </div>
-      <Select
-        options={ingredientsOptions}
-        placeholder="клубника, корица, лимонный сок..."
-        onChange={handleAddIngredient}
-      />
+      <Selector handleAddIngredient={handleAddIngredient} ingredientsOptions={ingredientsOptions} />
       <div className={s.user_ingredients}>
         {user.ingredients.map((i) => (
           <div key={i.id} className={s.user_ingredient}>
