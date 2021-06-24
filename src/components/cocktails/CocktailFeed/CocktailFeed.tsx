@@ -18,7 +18,7 @@ export const CocktailFeed: FC<CocktailFeedProps> = ({ cocktail }) => {
   return (
     <div className={s.cocktail_feed}>
       <TitleSecondary title="Обсуждение" />
-      {currentUser ? <AddPostForm currentUser={currentUser} /> : <></>}
+      {currentUser ? <AddPostForm currentUser={currentUser} cocktail={cocktail} /> : <></>}
       {cocktailPosts.length >= 1 ? (
         cocktailPosts.map((post) => {
           return (

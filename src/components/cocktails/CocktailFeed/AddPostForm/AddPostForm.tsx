@@ -1,27 +1,37 @@
 import { FC } from 'react'
 import s from './AddPostForm.module.scss'
-import { User } from '@types'
+import { Cocktail, User } from '@types'
 import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import { PhotoUploader } from './PhotoUploader/PhotoUploader'
 import { Button, ButtonTypes } from '@components/common/Button'
+import { postsFetcher } from '@api/posts'
 
 type AddPostFormProps = {
   currentUser: User
+  cocktail: Cocktail
 }
 
-export const AddPostForm: FC<AddPostFormProps> = ({ currentUser }) => {
+export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail }) => {
   const initialPost = {
     photo: null,
     text: '',
   }
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log(values)
+    const data = { post: { ...values, cocktail_id: cocktail.id } }
+    postsFetcher.create(data).then()
     setSubmitting(false)
   }
 
   return (
-    <Formik initialValues={initialPost} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialPost}
+      validationSchema={Yup.object({
+        content: Yup.string().min(1).required('Обязательное поле'),
+      })}
+      onSubmit={handleSubmit}
+    >
       {(values, setFieldValue) => (
         <Form className={s.form}>
           <div className={s.left_side}>
