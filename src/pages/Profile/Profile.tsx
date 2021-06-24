@@ -54,7 +54,7 @@ export const Profile = (props) => {
   }, [userLogin, userIsFollowed])
 
   useEffect(() => {
-    setUserIsFollowed(user.followers.some((follower) => follower.id === currentUser.id))
+    setUserIsFollowed(user.followers.some((follower) => follower.id === currentUser?.id))
   }, [user.followers, currentUser?.id])
 
   const handleFollow = () => {
