@@ -8,6 +8,7 @@ import { RecipeInfo } from '@components/cocktails/RecipeInfo'
 
 import { RecipeContent } from '@components/cocktails/RecipeContent'
 import { SimilarCocktails } from '@components/cocktails/SimilarCocktails'
+import { CocktailFeed } from '@components/cocktails/CocktailFeed'
 
 type Params = {
   id: string
@@ -31,6 +32,7 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
     <>
       <RecipeInfo cocktail={cocktail} setCocktail={setCocktail} />
       <RecipeContent cocktail={cocktail} />
+      <CocktailFeed cocktail={cocktail} />
       <SimilarCocktails cocktail={cocktail} />
     </>
   )

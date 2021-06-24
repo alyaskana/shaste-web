@@ -1,5 +1,6 @@
 import { Image } from './image'
 import { Ingredient } from './ingredient'
+import { Post } from './post'
 
 export type CocktailIngredient = Ingredient & { amount: string }
 
@@ -26,4 +27,5 @@ export type Cocktail = {
   favorited_users: number
   liked_users: number
   similar_cocktails?: Cocktail[]
+  posts: Post[]
 }

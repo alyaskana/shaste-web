@@ -1,0 +1,19 @@
+@import 'src/assets/css/variables.scss';
+
+.photo_uploader {
+  width: 25px;
+  height: 25px;
+  .label {
+    cursor: pointer;
+    &_icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &_input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}

@@ -2,6 +2,13 @@ import { Image } from './image'
 import { Ingredient } from './ingredient'
 import { IdsListItem } from './idsListItem'
 
+export type ShortUser = {
+  id: number
+  login: string
+  user_name: string
+  avatar: string
+}
+
 export type User = {
   id: number
   login: string
