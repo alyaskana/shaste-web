@@ -1,0 +1,14 @@
+@import 'src/assets/css/variables.scss';
+
+.cocktail_posts {
+  max-width: 736px;
+  margin: 0 auto;
+
+  .post_item {
+    padding: 24px 0;
+    border-bottom: 1px solid $gray_3;
+    &:last-of-type {
+      border-bottom: none;
+    }
+  }
+}

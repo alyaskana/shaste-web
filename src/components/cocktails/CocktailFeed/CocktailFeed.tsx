@@ -6,6 +6,7 @@ import { Cocktail } from '@types'
 import s from './CocktailFeed.module.scss'
 import { TitleSecondary } from '@components/common/TitleSecondary'
 import { AddPostForm } from './AddPostForm/AddPostForm'
+import { CocktailPosts } from './CocktailPosts/CocktailPosts'
 
 type CocktailFeedProps = {
   cocktail: Cocktail
@@ -13,23 +14,13 @@ type CocktailFeedProps = {
 
 export const CocktailFeed: FC<CocktailFeedProps> = ({ cocktail }) => {
   const currentUser = useStore($currentUser)
-  const cocktailPosts = cocktail.posts
 
   return (
     <div className={s.cocktail_feed}>
       <TitleSecondary title="Обсуждение" />
       {currentUser ? <AddPostForm currentUser={currentUser} cocktail={cocktail} /> : <></>}
-      {cocktailPosts.length >= 1 ? (
-        cocktailPosts.map((post) => {
-          return (
-            <>
-              <img src={`//localhost:3000/${post.user.avatar}`} alt="" />
-              <div>{post.user.login}</div>
-              <div>{post.user.user_name}</div>
-              <div>{post.content}</div>
-            </>
-          )
-        })
+      {cocktail.posts.length >= 1 ? (
+        <CocktailPosts cocktailPosts={cocktail.posts} />
       ) : (
         <div>Стань первым, кто напишет пост об этом коктейле!</div>
       )}

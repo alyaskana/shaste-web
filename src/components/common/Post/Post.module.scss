@@ -1,0 +1,49 @@
+@import 'src/assets/css/variables.scss';
+
+.post {
+  display: flex;
+
+  .left_side {
+    .avatar {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .right_side {
+    margin-left: 16px;
+    flex: 1;
+
+    .post_head {
+      margin-top: 8px;
+      font-size: 18px;
+      line-height: 24px;
+      display: flex;
+      justify-content: space-between;
+
+      .username {
+        font-weight: 500;
+      }
+
+      .login {
+        text-decoration: none;
+        font-weight: 400;
+        margin-left: 6px;
+        color: $gray_3;
+      }
+
+      .show_more_icon {
+        width: 25px;
+        height: 25px;
+        align-self: flex-end;
+        cursor: pointer;
+        opacity: 0.6;
+      }
+    }
+    .text {
+      margin-top: 4px;
+      font-size: 18px;
+      line-height: 140%;
+    }
+  }
+}
