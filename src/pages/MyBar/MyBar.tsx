@@ -5,6 +5,7 @@ import { ingredientsFetcher } from '../../api/ingredients'
 import { usersFetcher } from '../../api/users'
 import { $currentUser, setCurrentUserIngredients } from '../../models/users'
 import { Selector } from './Selector'
+import { Ingredients } from './Ingredients'
 
 export type IngredientsOptionType = {
   label: string
@@ -51,14 +52,7 @@ export const MyBar = () => {
         здесь вы можете добавить ингредиенты, которые есть у вас дома, чтобы легко найти соотвествующие рецепты
       </div>
       <Selector handleAddIngredient={handleAddIngredient} ingredientsOptions={ingredientsOptions} />
-      <div className={s.user_ingredients}>
-        {user.ingredients.map((i) => (
-          <div key={i.id} className={s.user_ingredient}>
-            {i.name}
-            <span>X</span>
-          </div>
-        ))}
-      </div>
+      <Ingredients ingredients={user.ingredients} />
     </div>
   )
 }

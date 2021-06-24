@@ -1,3 +1,5 @@
+@import 'src/assets/css/variables.scss';
+
 .wrapper {
   max-width: 886px;
   margin: 60px auto 20px;
@@ -26,5 +28,14 @@
   .user_ingredient {
     margin: 8px;
     display: inline-block;
+    padding: 0 8px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid $gray_3;
+    cursor: pointer;
+
+    .delete_btn {
+      margin-left: 4px;
+    }
   }
 }
