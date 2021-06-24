@@ -18,6 +18,9 @@ export const MyBar = () => {
   const [ingredientsOptions, setIngredientsOptions] = useState<IngredientsOptionType[]>([])
 
   useEffect(() => {
+    if (!user) {
+      return
+    }
     ingredientsFetcher.getAll().then((response) => {
       setIngredientsOptions(
         response.data.ingredients
@@ -37,10 +40,22 @@ export const MyBar = () => {
           }),
       )
     })
-  }, [user.ingredients])
+  }, [user])
+
+  if (!user) {
+    return null
+  }
 
   const handleAddIngredient = (selectedItem) => {
     usersFetcher.addIngredientToMyBar(selectedItem.value).then((response) => {
+      setCurrentUserIngredients(response.data.ingredients)
+    })
+  }
+
+  const handleDeleteIngredient = (id: number) => {
+    console.log(id)
+
+    usersFetcher.deleteIngredientFromMyBar(id).then((response) => {
       setCurrentUserIngredients(response.data.ingredients)
     })
   }
@@ -52,7 +67,7 @@ export const MyBar = () => {
         здесь вы можете добавить ингредиенты, которые есть у вас дома, чтобы легко найти соотвествующие рецепты
       </div>
       <Selector handleAddIngredient={handleAddIngredient} ingredientsOptions={ingredientsOptions} />
-      <Ingredients ingredients={user.ingredients} />
+      <Ingredients ingredients={user.ingredients} handleDeleteIngredient={handleDeleteIngredient} />
     </div>
   )
 }

@@ -47,4 +47,14 @@ export class API {
       },
     })
   }
+
+  delete<R>({ path, params = {}, headers = {} }: PostParams) {
+    const token = $token.getState()
+    return this.fetcher.post<R>(path, params, {
+      headers: {
+        Authorization: token,
+        ...headers,
+      },
+    })
+  }
 }

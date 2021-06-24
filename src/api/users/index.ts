@@ -19,6 +19,10 @@ class UsersFetcher extends API {
     return super.post<R>({ path: 'profile/ingredients', params: { id: ingredientId } })
   }
 
+  deleteIngredientFromMyBar<R = IngredientsResponse>(ingredientId: number) {
+    return super.delete<R>({ path: `profile/ingredients/delete`, params: { id: ingredientId } })
+  }
+
   follow<R = never>(userId: number) {
     return super.post<R>({ path: `users/follow`, params: { id: userId } })
   }

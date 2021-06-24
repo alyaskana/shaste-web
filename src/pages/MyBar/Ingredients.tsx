@@ -4,31 +4,28 @@ import { Ingredient as IngredientType } from '@types'
 
 type IngredientProps = {
   ingredient: IngredientType
-  handleDelete?: () => void
+  handleDeleteIngredient?: (item: any) => void
 }
 
 type IngredientsProps = {
   ingredients: IngredientType[]
+  handleDeleteIngredient?: (item: any) => void
 }
 
-const handleDelete = () => {
-  console.log('+++++++')
-}
-
-const Ingredient: FC<IngredientProps> = ({ ingredient, handleDelete }) => {
+const Ingredient: FC<IngredientProps> = ({ ingredient, handleDeleteIngredient }) => {
   return (
-    <div className={s.user_ingredient} onClick={handleDelete}>
+    <div className={s.user_ingredient} onClick={() => handleDeleteIngredient(ingredient.id)}>
       {ingredient.name}
       <span className={s.delete_btn}>X</span>
     </div>
   )
 }
 
-export const Ingredients: FC<IngredientsProps> = ({ ingredients }) => {
+export const Ingredients: FC<IngredientsProps> = ({ ingredients, handleDeleteIngredient }) => {
   return (
     <div className={s.user_ingredients}>
       {ingredients.map((ingredient) => (
-        <Ingredient key={ingredient.id} ingredient={ingredient} handleDelete={handleDelete} />
+        <Ingredient key={ingredient.id} ingredient={ingredient} handleDeleteIngredient={handleDeleteIngredient} />
       ))}
     </div>
   )
