@@ -11,6 +11,7 @@ import { cocktailsFetcher } from '../../../api/cocktails'
 import { Tag } from '../../../types'
 
 import s from './NewCocktailForm.module.scss'
+import { Button, ButtonTypes } from '@components/common/Button'
 
 type TNewCocktailFormProps = {
   categories: Tag[]
@@ -138,7 +139,7 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({
             <Categories categories={categories} setFieldValue={setFieldValue} />
           </fieldset>
 
-          <button type="submit">Submit</button>
+          <Button type={ButtonTypes.Submit} text="Создать коктейль" />
         </Form>
       )}
     </Formik>
