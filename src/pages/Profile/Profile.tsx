@@ -11,6 +11,7 @@ import { User } from '../../types'
 
 import IconLink from '@icons/icon_link.svg'
 import s from './Profile.module.scss'
+import { Posts } from '@components/profile/Posts'
 
 const initialUser: User = {
   id: 0,
@@ -33,6 +34,7 @@ const initialUser: User = {
   tasted: [],
   favorites: [],
   likes: [],
+  posts: [],
 }
 
 enum ContentTabTypes {
@@ -122,7 +124,7 @@ export const Profile = (props) => {
         </div>
       </div>
       <div className={s.content_wrapper}>
-        {contentTab === ContentTabTypes.Posts ? <div>here will be posts</div> : <div>here will be recipes</div>}
+        {contentTab === ContentTabTypes.Posts ? <Posts posts={user.posts} /> : <div>here will be recipes</div>}
       </div>
     </div>
   )

@@ -1,3 +1,4 @@
+import { Post } from './post'
 import { Image } from './image'
 import { Ingredient } from './ingredient'
 import { IdsListItem } from './idsListItem'
@@ -25,4 +26,5 @@ export type User = {
   tasted: IdsListItem[]
   favorites: IdsListItem[]
   likes: IdsListItem[]
+  posts: Post[]
 }
