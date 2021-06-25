@@ -32,7 +32,7 @@ export const CocktailPage: FC<RouteComponentProps<Params>> = ({ match }) => {
     <>
       <RecipeInfo cocktail={cocktail} setCocktail={setCocktail} />
       <RecipeContent cocktail={cocktail} />
-      <CocktailFeed cocktail={cocktail} />
+      <CocktailFeed cocktail={cocktail} setCocktail={setCocktail} />
       <SimilarCocktails cocktail={cocktail} />
     </>
   )

@@ -10,17 +10,20 @@ import { postsFetcher } from '@api/posts'
 type AddPostFormProps = {
   currentUser: User
   cocktail: Cocktail
+  setCocktail: (cocktail: Cocktail) => void
 }
 
-export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail }) => {
+export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail, setCocktail }) => {
   const initialPost = {
     photo: null,
-    text: '',
+    content: '',
   }
 
   const handleSubmit = (values, { setSubmitting }) => {
     const data = { post: { ...values, cocktail_id: cocktail.id } }
-    postsFetcher.create(data).then()
+    postsFetcher.create(data).then((response) => {
+      setCocktail({ ...cocktail, posts: [response.data, ...cocktail.posts] })
+    })
     setSubmitting(false)
   }
 
@@ -32,7 +35,7 @@ export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail }) => 
       })}
       onSubmit={handleSubmit}
     >
-      {(values, setFieldValue) => (
+      {(_values, setFieldValue) => (
         <Form className={s.form}>
           <div className={s.left_side}>
             <img src={`//localhost:3000/${currentUser.avatar.thumb.url}`} alt="" className={s.avatar} />
@@ -41,7 +44,7 @@ export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail }) => 
           <div className={s.right_side}>
             <Field
               as="textarea"
-              name="text"
+              name="content"
               className={s.input}
               rows={4}
               placeholder="Что вы думаете об этом коктейле?"

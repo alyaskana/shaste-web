@@ -1,6 +1,6 @@
+import { FC } from 'react'
 import { Post } from '@components/common/Post'
 import { Post as PostType } from '@types'
-import { FC } from 'react'
 import s from './CocktailPosts.module.scss'
 
 type CocktailPostsProps = {

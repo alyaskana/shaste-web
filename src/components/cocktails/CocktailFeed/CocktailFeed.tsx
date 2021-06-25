@@ -10,15 +10,16 @@ import { CocktailPosts } from './CocktailPosts/CocktailPosts'
 
 type CocktailFeedProps = {
   cocktail: Cocktail
+  setCocktail: (cocktail: Cocktail) => void
 }
 
-export const CocktailFeed: FC<CocktailFeedProps> = ({ cocktail }) => {
+export const CocktailFeed: FC<CocktailFeedProps> = ({ cocktail, setCocktail }) => {
   const currentUser = useStore($currentUser)
 
   return (
     <div className={s.cocktail_feed}>
       <TitleSecondary title="Обсуждение" />
-      {currentUser ? <AddPostForm currentUser={currentUser} cocktail={cocktail} /> : <></>}
+      {currentUser ? <AddPostForm currentUser={currentUser} cocktail={cocktail} setCocktail={setCocktail} /> : <></>}
       {cocktail.posts.length >= 1 ? (
         <CocktailPosts cocktailPosts={cocktail.posts} />
       ) : (
