@@ -16,9 +16,9 @@ export const Navigation = () => {
       <NavLink to="/cocktails" activeClassName={s.active}>
         рецепты
       </NavLink>
-      <NavLink to="/collections" activeClassName={s.active}>
+      {/* <NavLink to="/collections" activeClassName={s.active}>
         подборки
-      </NavLink>
+      </NavLink> */}
     </div>
   )
 }
