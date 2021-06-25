@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2f56cdb2.chunk.css",
+    "main.js": "/static/js/main.83984823.chunk.js",
+    "main.js.map": "/static/js/main.83984823.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.0e0b2d1e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.0e0b2d1e.js.map",
+    "static/js/2.949086c1.chunk.js": "/static/js/2.949086c1.chunk.js",
+    "static/js/2.949086c1.chunk.js.map": "/static/js/2.949086c1.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.2f56cdb2.chunk.css.map": "/static/css/main.2f56cdb2.chunk.css.map",
+    "static/js/2.949086c1.chunk.js.LICENSE.txt": "/static/js/2.949086c1.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/Stravinsky-Regular.288ef523.otf",
+    "static/media/IconPhoto.015ba07a.svg": "/static/media/IconPhoto.015ba07a.svg",
+    "static/media/available.1d288a7c.svg": "/static/media/available.1d288a7c.svg",
+    "static/media/icon_link.9d8c50b6.svg": "/static/media/icon_link.9d8c50b6.svg",
+    "static/media/like_icon_active.c2bb675e.svg": "/static/media/like_icon_active.c2bb675e.svg",
+    "static/media/like_icon_default.4ed5e9f7.svg": "/static/media/like_icon_default.4ed5e9f7.svg",
+    "static/media/like_icon_hover.1c9093ce.svg": "/static/media/like_icon_hover.1c9093ce.svg",
+    "static/media/logo.62362a07.svg": "/static/media/logo.62362a07.svg",
+    "static/media/more_icon.4d218cf7.svg": "/static/media/more_icon.4d218cf7.svg",
+    "static/media/save_icon_active.a9a157a1.svg": "/static/media/save_icon_active.a9a157a1.svg",
+    "static/media/save_icon_default.92f29ca9.svg": "/static/media/save_icon_default.92f29ca9.svg",
+    "static/media/save_icon_hover.069218ad.svg": "/static/media/save_icon_hover.069218ad.svg",
+    "static/media/search_icon.f669738f.svg": "/static/media/search_icon.f669738f.svg",
+    "static/media/sign_black.a43c1b5d.svg": "/static/media/sign_black.a43c1b5d.svg",
+    "static/media/toast_icon_active.2fc3e498.svg": "/static/media/toast_icon_active.2fc3e498.svg",
+    "static/media/toast_icon_default.b81b291f.svg": "/static/media/toast_icon_default.b81b291f.svg",
+    "static/media/toast_icon_hover.24c4744a.svg": "/static/media/toast_icon_hover.24c4744a.svg",
+    "static/media/unavailable.01aa3e50.svg": "/static/media/unavailable.01aa3e50.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0e0b2d1e.js",
+    "static/js/2.949086c1.chunk.js",
+    "static/css/main.2f56cdb2.chunk.css",
+    "static/js/main.83984823.chunk.js"
+  ]
+}
