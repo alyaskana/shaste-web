@@ -13,9 +13,18 @@ const CocktailsPage = () => {
       setCocktails(response.data.cocktails)
     })
   }, [])
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    console.log(values)
+    cocktailsFetcher.search(values.text).then((response) => {
+      setCocktails(response.data.cocktails)
+      setSubmitting(false)
+    })
+  }
+
   return (
     <>
-      <Search className={s.search} />
+      <Search className={s.search} handleSubmit={handleSubmit} />
       <div className={s.cocktails_list}>
         <Masonry breakpointCols={4} className={s.my_masonry_grid} columnClassName={s.my_masonry_grid_column}>
           {cocktails.map((cocktail) => (

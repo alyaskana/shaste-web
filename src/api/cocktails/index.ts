@@ -15,6 +15,10 @@ class CocktailsFetcher extends API {
     return super.get<R>({ path: `cocktails/${id}` })
   }
 
+  search<R = CocktailsResponse>(text: string) {
+    return super.get<R>({ path: 'cocktails/search', params: { search: text } })
+  }
+
   create<R = Cocktail>(data: Record<string, unknown>) {
     return super.post<R>({
       path: `cocktails`,
