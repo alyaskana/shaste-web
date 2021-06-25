@@ -12,7 +12,13 @@ export const Post: FC<PostProps> = ({ post }) => {
     <div className={s.post}>
       <div className={s.left_side}>
         <a href={`/${post.user.login}`}>
-          <img src={`//localhost:3000/${post.user.avatar}`} alt="" className={s.avatar} />
+          <img
+            src={`${process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'}/${
+              post.user.avatar
+            }`}
+            alt=""
+            className={s.avatar}
+          />
         </a>
       </div>
       <div className={s.right_side}>

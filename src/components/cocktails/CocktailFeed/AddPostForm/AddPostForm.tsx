@@ -38,7 +38,13 @@ export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail, setCo
       {(_values, setFieldValue) => (
         <Form className={s.form}>
           <div className={s.left_side}>
-            <img src={`//localhost:3000/${currentUser.avatar.thumb.url}`} alt="" className={s.avatar} />
+            <img
+              src={`${
+                process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'
+              }/${currentUser.avatar.thumb.url}`}
+              alt=""
+              className={s.avatar}
+            />
             <PhotoUploader setFieldValue={setFieldValue} />
           </div>
           <div className={s.right_side}>

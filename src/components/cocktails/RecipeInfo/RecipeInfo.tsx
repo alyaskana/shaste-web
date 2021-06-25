@@ -17,6 +17,7 @@ type RecipeInfoProps = {
 }
 
 export const RecipeInfo: FC<RecipeInfoProps> = ({ cocktail, setCocktail }) => {
+  const host = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'
   return (
     <div className={s.wrapper}>
       <div className={s.content_wrapper}>
@@ -38,7 +39,7 @@ export const RecipeInfo: FC<RecipeInfoProps> = ({ cocktail, setCocktail }) => {
           </div>
         </div>
         <div className={s.image}>
-          <RecipePhoto src={'//localhost:3000' + cocktail.image.url} />
+          <RecipePhoto src={host + cocktail.image.url} />
         </div>
       </div>
     </div>

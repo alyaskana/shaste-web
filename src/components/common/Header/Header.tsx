@@ -17,6 +17,8 @@ export const Header = () => {
     setUserMenu(!showUserMenu)
   }
 
+  const host = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'
+
   return (
     <div className={s.top_menu}>
       <Navigation />
@@ -31,7 +33,7 @@ export const Header = () => {
               className="outlined"
             />
             <div className={s.avatar_wrapper} onMouseEnter={toggleShowingUserMenu} onMouseLeave={toggleShowingUserMenu}>
-              <img src={'//localhost:3000' + currentUser.avatar.thumb.url} alt="" />
+              <img src={host + currentUser.avatar.thumb.url} alt="" />
               {showUserMenu && <NavigationProfileMenu user={currentUser} />}
             </div>
           </>

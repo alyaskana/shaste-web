@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 import { $token } from '../models/users'
 
 export const fetcher = axios.create({
-  baseURL: 'http://localhost:3000/api/',
+  baseURL: process.env.NODE_ENV == 'development' ? 'http://localhost:3000/api/' : 'https://shaste.herokuapp.com/api/',
 })
 
 fetcher.interceptors.response.use(undefined, async (error: AxiosError) => {

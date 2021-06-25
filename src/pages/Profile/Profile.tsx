@@ -65,6 +65,7 @@ export const Profile = (props) => {
     }
   }
 
+  const host = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'
   return (
     <div className={s.wrapper}>
       <div className={s.bio}>
@@ -74,7 +75,7 @@ export const Profile = (props) => {
             <CounterProfile text="коктейлей опробовано" amount={user.tasted.length} />
           </div>
           <div className={s.avatar_wrapper}>
-            <img src={'//localhost:3000' + user.avatar.url} alt="" />
+            <img src={host + user.avatar.url} alt="" />
           </div>
           <div className={cn(s.column, s.right)}>
             <CounterProfile text="подписчики" amount={user.followers.length} />

@@ -9,13 +9,15 @@ export const NavigationProfileMenu = ({ user }) => {
     window.location.reload()
   }
 
+  const host = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'
+
   return (
     <div className={s.user_menu_wrapper}>
       <div className={s.user_menu}>
         <NavLink to={`/${user.login}`}>
           <div className={s.header}>
             <div className={s.avatar_wrapper}>
-              <img src={'//localhost:3000' + user.avatar.thumb.url} alt="" />
+              <img src={host + user.avatar.thumb.url} alt="" />
             </div>
             <div className={s.bio}>
               <div className={s.name}>{user.user_name}</div>

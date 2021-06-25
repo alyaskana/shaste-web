@@ -14,7 +14,12 @@ export const RecipeCard: FC<RecipeCardProps> = ({ cocktail, className }) => {
   return (
     <a href={`/cocktails/${cocktail.id}`} className={cn(s.card_wrapper, className)}>
       <div className={s.recipe_card}>
-        <CardPhoto src={`//localhost:3000/${cocktail.image.url}`} className={s.recipe_card_photo} />
+        <CardPhoto
+          src={`${process.env.NODE_ENV == 'development' ? 'http://localhost:3000' : 'https://shaste.herokuapp.com'}/${
+            cocktail.image.url
+          }`}
+          className={s.recipe_card_photo}
+        />
         <div className={s.recipe_card_content}>
           <h1 className={s.title}>{cocktail.title}</h1>
           <div className={s.ingredients_block}>
