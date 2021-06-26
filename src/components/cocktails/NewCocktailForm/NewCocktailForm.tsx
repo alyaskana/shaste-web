@@ -71,20 +71,32 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({
         <Form className={s.form}>
           <fieldset>
             <label htmlFor="title">как называется ваш коктейль?</label>
-            <Field name="title" type="text" placeholder="маргарита, текила санрайз, молочный пунш" />
+            <Field
+              name="title"
+              type="text"
+              placeholder="маргарита, текила санрайз, молочный пунш"
+              className={s.input_title}
+            />
             <ErrorMessage name="title" />
           </fieldset>
 
           <fieldset>
             <label htmlFor="description">небольшое описание</label>
-            <Field name="description" as="textarea" placeholder="пару слов туда-сюда сделай" className={s.textarea} />
+            <Field
+              name="description"
+              as="textarea"
+              placeholder="расскажите немного о вашем коктейле"
+              className={s.textarea}
+            />
             <ErrorMessage name="description" />
           </fieldset>
 
           <fieldset>
             <div className={s.ingredients}>
-              <label htmlFor="ingredients">какие нужны ингредиенты?</label>
-              <label htmlFor="ingredients">
+              <label htmlFor="ingredients" className={s.label_what}>
+                какие нужны ингредиенты?
+              </label>
+              <label htmlFor="ingredients" className={s.label_how_much}>
                 сколько?<span className={s.caption}>необязательно</span>
               </label>
             </div>
@@ -131,7 +143,7 @@ export const NewCocktailForm: FC<TNewCocktailFormProps> = ({
 
           <fieldset>
             <label htmlFor="youtube">у вас есть youtube видео?</label>
-            <Field name="youtube" />
+            <Field name="youtube" className={s.youtube_input} />
           </fieldset>
 
           <fieldset>

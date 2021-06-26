@@ -1,7 +1,11 @@
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 div.control {
   border-color: white;
-
-  &:hover {}
 }
 
 .select {

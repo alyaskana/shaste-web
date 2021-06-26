@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Selector } from './Selector'
 import { Tag, TagType } from '../../../../types'
+import s from './Categories.module.scss'
 
 type TCategoriesProps = {
   categories: Tag[]
@@ -22,9 +23,9 @@ export const Categories: FC<TCategoriesProps> = ({ categories, setFieldValue }) 
     }))
 
   return (
-    <>
+    <div className={s.categories}>
       <Selector options={goals} setFieldValue={setFieldValue} name="tags.goals" placeholder="Для чего подойдет?" />
       <Selector options={tastes} setFieldValue={setFieldValue} name="tags.tastes" placeholder="Какой вкус?" />
-    </>
+    </div>
   )
 }
