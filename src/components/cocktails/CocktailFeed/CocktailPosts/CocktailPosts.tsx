@@ -13,7 +13,7 @@ export const CocktailPosts: FC<CocktailPostsProps> = ({ cocktailPosts }) => {
       {cocktailPosts.map((post) => {
         return (
           <div key={post.id} className={s.post_item}>
-            <Post post={post} />
+            <Post isRecipeCardShowing={false} post={post} />
           </div>
         )
       })}

@@ -2,12 +2,14 @@ import { Post as PostType } from '@types'
 import { FC } from 'react'
 import s from './Post.module.scss'
 import { ReactComponent as ShowMoreIconSvg } from '@icons/more_icon.svg'
+import { PostRecipeCard } from './PostRecipeCard'
 
 type PostProps = {
   post: PostType
+  isRecipeCardShowing: boolean
 }
 
-export const Post: FC<PostProps> = ({ post }) => {
+export const Post: FC<PostProps> = ({ post, isRecipeCardShowing }) => {
   return (
     <div className={s.post}>
       <div className={s.left_side}>
@@ -26,6 +28,13 @@ export const Post: FC<PostProps> = ({ post }) => {
           <ShowMoreIconSvg className={s.show_more_icon} />
         </div>
         <div className={s.text}>{post.content}</div>
+        {isRecipeCardShowing ? (
+          <div className={s.recipe_card_wrap}>
+            <PostRecipeCard cocktail={post.cocktail} />
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   )

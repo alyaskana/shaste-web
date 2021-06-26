@@ -12,7 +12,7 @@ export const Posts: FC<PostsProps> = ({ posts }) => {
     <>
       {posts.reverse().map((post) => (
         <div key={post.id} className={s.post_item}>
-          <Post post={post} />
+          <Post post={post} isRecipeCardShowing={true} />
         </div>
       ))}
     </>
