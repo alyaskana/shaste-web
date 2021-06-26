@@ -67,6 +67,8 @@ export const Profile = (props) => {
     }
   }
 
+  console.log(contentTab)
+
   return (
     <div className={s.wrapper}>
       <div className={s.bio}>
@@ -123,7 +125,15 @@ export const Profile = (props) => {
         </div>
       </div>
       <div className={s.content_wrapper}>
-        {contentTab === ContentTabTypes.Posts ? <Posts posts={user.posts} /> : <div>here will be recipes</div>}
+        {contentTab === ContentTabTypes.Posts &&
+          (user.posts.length > 0 ? (
+            <Posts posts={user.posts} />
+          ) : (
+            <div className={s.content_plug}>Пользователь еще не создал ни одного поста :c</div>
+          ))}
+        {contentTab === ContentTabTypes.Recipes ? (
+          <div className={s.content_plug}>Пользователь еще не создал ни одного рецепта :c</div>
+        ) : null}
       </div>
     </div>
   )
