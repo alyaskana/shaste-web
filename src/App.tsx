@@ -29,6 +29,9 @@ function App() {
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route exact path="/">
+          <CocktailsPage />
+        </Route>
         <Route exact path="/login">
           {token ? <Redirect to="/cocktails" /> : <LoginPage />}
         </Route>
