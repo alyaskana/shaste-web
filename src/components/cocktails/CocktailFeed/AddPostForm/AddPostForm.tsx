@@ -19,10 +19,11 @@ export const AddPostForm: FC<AddPostFormProps> = ({ currentUser, cocktail, setCo
     content: '',
   }
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
     const data = { post: { ...values, cocktail_id: cocktail.id } }
     postsFetcher.create(data).then((response) => {
       setCocktail({ ...cocktail, posts: [response.data, ...cocktail.posts] })
+      resetForm()
     })
     setSubmitting(false)
   }
