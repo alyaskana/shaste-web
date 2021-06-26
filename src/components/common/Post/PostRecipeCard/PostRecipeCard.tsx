@@ -8,7 +8,7 @@ type PostRecipeCardProps = {
 
 export const PostRecipeCard: FC<PostRecipeCardProps> = ({ cocktail }) => {
   return (
-    <div className={s.card}>
+    <a href={`/cocktails/${cocktail.id}`} className={s.card}>
       <div className={s.image_wrap}>
         <img src={cocktail.image.url} alt="" className={s.image} />
       </div>
@@ -16,6 +16,6 @@ export const PostRecipeCard: FC<PostRecipeCardProps> = ({ cocktail }) => {
         <div className={s.title}>{cocktail.title}</div>
         <div className={s.description}>{cocktail.description}</div>
       </div>
-    </div>
+    </a>
   )
 }

@@ -16,11 +16,15 @@ const FeedPage = () => {
 
   return (
     <div className={s.feed_page}>
-      {posts.map((post) => (
-        <div key={post.id} className={s.post_item}>
-          <Post post={post} isRecipeCardShowing={true} />
-        </div>
-      ))}
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <div key={post.id} className={s.post_item}>
+            <Post post={post} isRecipeCardShowing={true} />
+          </div>
+        ))
+      ) : (
+        <div className={s.content_plug}>Тут скоро появятся посты ваших друзей!</div>
+      )}
     </div>
   )
 }
