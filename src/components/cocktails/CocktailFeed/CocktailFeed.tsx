@@ -23,7 +23,7 @@ export const CocktailFeed: FC<CocktailFeedProps> = ({ cocktail, setCocktail }) =
       {cocktail.posts.length >= 1 ? (
         <CocktailPosts cocktailPosts={cocktail.posts} />
       ) : (
-        <div>Стань первым, кто напишет пост об этом коктейле!</div>
+        <div className={s.content_plug}>У этого коктейля еще нет постов :с</div>
       )}
     </div>
   )
