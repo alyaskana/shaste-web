@@ -1,0 +1,12 @@
+.feed_page {
+  margin: 0px auto;
+  max-width: 800px;
+}
+
+.post_item {
+  padding: 40px 0;
+  border-bottom: 1px solid lightgray;
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
