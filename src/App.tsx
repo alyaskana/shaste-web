@@ -36,7 +36,7 @@ function App() {
           {token ? <Redirect to="/cocktails" /> : <LoginPage />}
         </Route>
         <Route exact path="/sign_up">
-          <SignUp />
+          {token ? <Redirect to="/cocktails" /> : <SignUp />}
         </Route>
         <Route exact path="/feed">
           <FeedPage />
